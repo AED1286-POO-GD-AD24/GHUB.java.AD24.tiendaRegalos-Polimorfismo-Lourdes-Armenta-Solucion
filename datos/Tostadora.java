@@ -1,13 +1,14 @@
 package datos;
+import negocio.Vendible;
 
-public class Tostadora extends Producto {
+public class Tostadora extends ProductoElectroDomestico implements Vendible{
     private int numRanuras;
-    private String color;
-
-    public Tostadora(String nombre, double precio, int numRanuras, String color) {
-        super(nombre, precio);
+    
+    public Tostadora(String idProducto, String nombre, double precio, String descripcion
+                        ,String marca, String modelo, String color, int garantia, String voltaje
+                        ,int numRanuras) {
+        super(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje);
         this.numRanuras = numRanuras;
-        this.color = color;
     }
 
     public int getNumRanuras() {
@@ -18,34 +19,51 @@ public class Tostadora extends Producto {
         this.numRanuras = numRanuras;
     }
 
-    public String getColor() {
-        return color;
+
+    @Override
+    public String obtenerDetalles() {
+        // TODO Auto-generated method stub
+        return super.obtenerDetalles();
     }
 
-    public void setColor(String color) {
-        this.color = color;
+
+    @Override
+    public boolean aplicarDescuento(double porcentaje) {
+        // TODO Auto-generated method stub
+        return false;
     }
 
-    // Método que puede ser sobrescrito por las clases derivadas
-    public String detallesProducto() {
-        return super.detallesProducto() + ", Ranuras: " + this.numRanuras + ", Color: " + this.color;
-       
-    }
 
-    // Sobrescribir el método detallesProducto
+
+
+
+
     @Override
     public String toString() {
-        return detallesProducto();
+        // TODO Auto-generated method stub
+        return super.toString();
     }
-    // Sobrescribir el método aplicarDescuento
+
     @Override
-    public void aplicarDescuento(double porcentaje) {
-       if (porcentaje > 0 && porcentaje <= 90) { // Descuento máximo del 50% para libros
-           super.aplicarDescuento(porcentaje);
-           System.out.println("Descuento del " + porcentaje + "% aplicado al libro: " + getNombre());
-       } else {
-           System.out.println("Descuento no válido para el libro: " + getNombre() + ". El descuento debe ser entre 0% y 90%.");
-       }
+    public double calcularPrecio() {
+        // TODO Auto-generated method stub
+        return 0;
     }
+
+    @Override
+    public double calcularPrecio(double porcentaje) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean esVendible() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    
+
+   
     
 }

@@ -1,52 +1,103 @@
 
 package datos;
+import negocio.Vendible;
 
-public class Celular extends Producto {
-    private String marca;
-    private String modelo;
+public class Celular extends ProductoElectronico implements Vendible{
+    private int numCamaras;
+    private String sistemaOperativo;
+    private int capacidadAlmacenamiento;
+    private int ram;
+    private String tipoPantalla;
 
-    public Celular(String nombre, double precio, String marca, String modelo) {
-        super(nombre, precio);
-        this.marca = marca;
-        this.modelo = modelo;
+    public Celular(String idProducto, String nombre, double precio, String descripcion
+                    ,String marca, String modelo, String color, int garantia, String voltaje
+                    ,int numCamaras, String sistemaOperativo, int capacidadAlmacenamiento, int ram, String tipoPantalla)
+    {
+        super(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje);
+        this.numCamaras = numCamaras;
+        this.sistemaOperativo = sistemaOperativo;
+        this.capacidadAlmacenamiento = capacidadAlmacenamiento;
+        this.ram = ram;
+        this.tipoPantalla = tipoPantalla;
     }
 
-    public String getMarca() {
-        return marca;
+    public int getNumCamaras() {
+        return numCamaras;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setNumCamaras(int numCamaras) {
+        this.numCamaras = numCamaras;
     }
 
-    public String getModelo() {
-        return modelo;
+    public String getSistemaOperativo() {
+        return sistemaOperativo;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setSistemaOperativo(String sistemaOperativo) {
+        this.sistemaOperativo = sistemaOperativo;
     }
 
-    // Método que puede ser sobrescrito por las clases derivadas
-    public String detallesProducto() {
-        return super.detallesProducto() + ", Marca: " + this.marca + ", Modelo: " + this.modelo;
-       
+    public int getCapacidadAlmacenamiento() {
+        return capacidadAlmacenamiento;
     }
 
-    // Sobrescribir el método detallesProducto
+    public void setCapacidadAlmacenamiento(int capacidadAlmacenamiento) {
+        this.capacidadAlmacenamiento = capacidadAlmacenamiento;
+    }
+
+    public int getRam() {
+        return ram;
+    }
+
+    public void setRam(int ram) {
+        this.ram = ram;
+    }
+
+    public String getTipoPantalla() {
+        return tipoPantalla;
+    }
+
+    public void setTipoPantalla(String tipoPantalla) {
+        this.tipoPantalla = tipoPantalla;
+    }
+
+    @Override
+    public String obtenerDetalles() {
+        // TODO Auto-generated method stub
+        return super.obtenerDetalles();
+    }
+
+    @Override
+    public boolean aplicarDescuento(double porcentaje) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
     @Override
     public String toString() {
-        return detallesProducto();
+        // TODO Auto-generated method stub
+        return super.toString();
     }
 
-    // Sobrescribir el método aplicarDescuento
     @Override
-    public void aplicarDescuento(double porcentaje) {
-       if (porcentaje > 0 && porcentaje <= 20) { // Descuento máximo del 50% para libros
-           super.aplicarDescuento(porcentaje);
-           System.out.println("Descuento del " + porcentaje + "% aplicado al libro: " + getNombre());
-       } else {
-           System.out.println("Descuento no válido para el libro: " + getNombre() + ". El descuento debe ser entre 0% y 20%.");
-       }
+    public double calcularPrecio() {
+        // TODO Auto-generated method stub
+        return 0;
     }
+
+    @Override
+    public double calcularPrecio(double porcentaje) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean esVendible() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+    
+    
+
+    
 }

@@ -33,7 +33,7 @@ public class ProductoDAO {
                 if (producto instanceof Libro) {
                     Libro libro = (Libro) producto;
                     System.out.println("Autor: " + libro.getAutor());
-                    System.out.println("Páginas: " + libro.getNumPaginas());
+                    System.out.println("Páginas: " + libro.getNumeroPaginas());
                 } else if (producto instanceof Celular) {
                     Celular celular = (Celular) producto;
                     System.out.println("Marca: " + celular.getMarca());
@@ -80,7 +80,7 @@ public class ProductoDAO {
         if (producto instanceof Libro) {
             Libro libro = (Libro) producto;
             System.out.println("Autor: " + libro.getAutor());
-            System.out.println("Páginas: " + libro.getNumPaginas());
+            System.out.println("Páginas: " + libro.getNumeroPaginas());
         } else if (producto instanceof Celular) {
             Celular celular = (Celular) producto;
             System.out.println("Marca: " + celular.getMarca());

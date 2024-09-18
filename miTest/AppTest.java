@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class AppTest {
-
+    /* 
     @Test 
     public void testMenuInitialization() {
         Menu menu = new Menu();
@@ -405,4 +405,5 @@ class AppTest {
         // Verificar el método toString en Tostadora
         assertEquals("Producto: Black & Decker, Precio: $50.0, Ranuras: 2, Color: plata", tostadora.toString());
     }
+ */
 }

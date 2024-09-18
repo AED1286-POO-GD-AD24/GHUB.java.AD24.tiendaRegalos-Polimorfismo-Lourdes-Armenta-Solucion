@@ -1,11 +1,24 @@
 package datos;
-public class Producto {
+public abstract class Producto {
+    private String idProducto;
     private String nombre;
     private double precio;
+    private String descripcion;
 
-    public Producto(String nombre, double precio) {
+
+    public Producto(String idProducto, String nombre,  double precio,  String descripcion) {
+        this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
+        this.descripcion = descripcion;
+    }
+
+    public String getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(String idProducto) {
+        this.idProducto = idProducto;
     }
 
     public String getNombre() {
@@ -16,6 +29,8 @@ public class Producto {
         this.nombre = nombre;
     }
 
+   
+
     public double getPrecio() {
         return precio;
     }
@@ -24,27 +39,17 @@ public class Producto {
         this.precio = precio;
     }
 
-    // Método que puede ser sobrescrito por las clases derivadas
-    public void aplicarDescuento(double porcentaje) {
-        if (porcentaje > 0 && porcentaje <= 100) {
-            this.precio -= this.precio * (porcentaje / 100);
-        }
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    //@Override
-    //public String toString() {
-    //    return nombre + ": $" + precio;
-    //}
-
-    // Método que puede ser sobrescrito por las clases derivadas
-    public String detallesProducto() {
-        return "Producto: " + nombre + ", Precio: $" + precio;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
+    
+    public abstract String obtenerDetalles();
 
-    // Sobrescribir el método detallesProducto
-    @Override
-    public String toString() {
-        return detallesProducto();
-    }
+    public abstract boolean aplicarDescuento(double porcentaje);
+
 
 }

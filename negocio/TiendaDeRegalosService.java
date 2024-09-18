@@ -86,32 +86,32 @@ public class TiendaDeRegalosService {
     }
 
     public void agregarLibro(String nombre, double precio, String titulo,String autor, int paginas) {
-        Libro libro = new Libro(nombre, precio, titulo, autor, paginas);
+        Libro libro = new Libro(nombre, autor, precio, titulo, autor, autor, paginas, autor, paginas, autor);
         productoDAO.agregarProducto(libro);
     }
 
     public void agregarCelular(String nombre, double precio, String marca, String modelo) {
-        Celular celular = new Celular(nombre, precio, marca, modelo);
+        Celular celular = new Celular(nombre, modelo, precio, marca, modelo, modelo, modelo, 0, modelo, 0, modelo, 0, 0, modelo);
         productoDAO.agregarProducto(celular);
     }
 
     public void agregarTelevision(String nombre, double precio, String tamanio, String resolucion) {
-        Producto producto = new Television(nombre, precio, tamanio, resolucion);
+        Producto producto = new Television(nombre, resolucion, precio, tamanio, resolucion, resolucion, resolucion, 0, resolucion, resolucion, resolucion, resolucion);
         productoDAO.agregarProducto(producto);
     }
 
     public void agregarLicuadora(String nombre, double precio, int potencia, int capacidad) {
-        Producto producto = new Licuadora(nombre, precio, potencia, capacidad);
+        Producto producto = new Licuadora(nombre, nombre, precio, nombre, potencia, capacidad);
         productoDAO.agregarProducto(producto);
     }
 
     public void agregarTostadora(String nombre, double precio, int ranuras, String color) {
-        Producto producto = new Tostadora(nombre, precio, ranuras, color);
+        Producto producto = new Tostadora(nombre, color, precio, color, color, color, color, ranuras, color, ranuras);
         productoDAO.agregarProducto(producto);
     }
 
     public void agregarCalculadora(String nombre, double precio, String tipo) {
-        Producto producto = new Calculadora(nombre, precio, tipo);
+        Producto producto = new Calculadora(nombre, tipo, precio, tipo, tipo, tipo, tipo, 0, tipo, tipo);
         productoDAO.agregarProducto(producto);
     }
 

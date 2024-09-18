@@ -1,11 +1,13 @@
 package datos;
+import negocio.Vendible;
 
-public class Licuadora extends Producto {
+public class Licuadora extends Producto implements Vendible{
     private int potencia;
     private int capacidad;
 
-    public Licuadora(String nombre, double precio, int potencia, int capacidad) {
-        super(nombre, precio);
+    public Licuadora(String idProducto, String nombre, double precio, String descripcion
+                        ,int potencia, int capacidad) {
+        super(idProducto, nombre, precio, descripcion);
         this.potencia = potencia;
         this.capacidad = capacidad;
     }
@@ -25,27 +27,43 @@ public class Licuadora extends Producto {
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
-    // Método que puede ser sobrescrito por las clases derivadas
-    public String detallesProducto() {
-        return super.detallesProducto() + ", Potencia: " + this.potencia + "W, Capacidad: " + this.capacidad + "L";
-       
+
+    @Override
+    public boolean aplicarDescuento(double porcentaje) {
+        // TODO Auto-generated method stub
+        return false;
     }
 
-    // Sobrescribir el método detallesProducto
+    @Override
+    public String obtenerDetalles() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     @Override
     public String toString() {
-        return detallesProducto();
+        // TODO Auto-generated method stub
+        return super.toString();
     }
 
-
-    // Sobrescribir el método aplicarDescuento
     @Override
-    public void aplicarDescuento(double porcentaje) {
-       if (porcentaje > 0 && porcentaje <= 20) { // Descuento máximo del 50% para libros
-           super.aplicarDescuento(porcentaje);
-           System.out.println("Descuento del " + porcentaje + "% aplicado al libro: " + getNombre());
-       } else {
-           System.out.println("Descuento no válido para el libro: " + getNombre() + ". El descuento debe ser entre 0% y 20%.");
-       }
+    public double calcularPrecio() {
+        // TODO Auto-generated method stub
+        return 0;
     }
+
+    @Override
+    public double calcularPrecio(double porcentaje) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean esVendible() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+    
+    
+
 }

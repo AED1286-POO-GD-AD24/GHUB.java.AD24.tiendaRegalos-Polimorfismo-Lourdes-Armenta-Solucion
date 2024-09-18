@@ -1,16 +1,21 @@
 package datos;
+import negocio.Vendible;
 
-public class Television extends Producto {
+public class Television extends ProductoElectronico implements Vendible{
     private String tamanio;
     private String resolucion;
+    private String tipoPantalla;
 
-    // Ensure Producto class has a matching constructor
-    public Television(String nombre, double precio, String tamanio, String resolucion) {
-        super(nombre, precio);
+    public Television(String idProducto, String nombre, double precio, String descripcion
+                    ,String marca, String modelo, String color, int garantia, String voltaje
+                    ,String tamanio, String resolucion, String tipoPantalla)
+    {
+        super(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje);
         this.tamanio = tamanio;
         this.resolucion = resolucion;
+        this.tipoPantalla = tipoPantalla;
     }
-    
+
     public String getTamanio() {
         return tamanio;
     }
@@ -27,26 +32,50 @@ public class Television extends Producto {
         this.resolucion = resolucion;
     }
 
-    // Método que puede ser sobrescrito por las clases derivadas
-    public String detallesProducto() {
-        return super.detallesProducto() + ", Tamaño: " + this.tamanio + ", Resolución: " + this.resolucion;
-       
+    public String getTipoPantalla() {
+        return tipoPantalla;
     }
 
-    // Sobrescribir el método detallesProducto
+    public void setTipoPantalla(String tipoPantalla) {
+        this.tipoPantalla = tipoPantalla;
+    }
+
+    @Override
+    public String obtenerDetalles() {
+        // TODO Auto-generated method stub
+        return super.obtenerDetalles();
+    }
+
+    @Override
+    public boolean aplicarDescuento(double porcentaje) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
     @Override
     public String toString() {
-        return detallesProducto();
+        // TODO Auto-generated method stub
+        return super.toString();
     }
 
-    // Sobrescribir el método aplicarDescuento
     @Override
-    public void aplicarDescuento(double porcentaje) {
-       if (porcentaje > 0 && porcentaje <= 30) { // Descuento máximo del 50% para libros
-           super.aplicarDescuento(porcentaje);
-           System.out.println("Descuento del " + porcentaje + "% aplicado al libro: " + getNombre());
-       } else {
-           System.out.println("Descuento no válido para el libro: " + getNombre() + ". El descuento debe ser entre 0% y 30%.");
-       }
+    public double calcularPrecio() {
+        // TODO Auto-generated method stub
+        return 0;
     }
+
+    @Override
+    public double calcularPrecio(double porcentaje) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean esVendible() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+    
+    
+    
 }

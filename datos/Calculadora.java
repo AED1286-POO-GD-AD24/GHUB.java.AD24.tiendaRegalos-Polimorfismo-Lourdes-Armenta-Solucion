@@ -1,10 +1,14 @@
 package datos;
+import negocio.Vendible;
 
-public class Calculadora extends Producto {
+public class Calculadora extends ProductoElectronico  implements Vendible{
     private String tipo;
 
-    public Calculadora(String nombre, double precio, String tipo) {
-        super(nombre, precio);
+    public Calculadora(String idProducto, String nombre, double precio, String descripcion
+                       ,String marca, String modelo, String color, int garantia, 
+                       String voltaje ,String tipo) {
+
+        super(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje);
         this.tipo = tipo;
     }
 
@@ -16,26 +20,43 @@ public class Calculadora extends Producto {
         this.tipo = tipo;
     }
 
-    // Método que puede ser sobrescrito por las clases derivadas
-    public String detallesProducto() {
-        return super.detallesProducto() + ", Tipo: " + this.tipo;
-       
+    @Override
+    public String obtenerDetalles() {
+        return super.obtenerDetalles();
     }
 
-    // Sobrescribir el método detallesProducto
+    @Override
+    public boolean aplicarDescuento(double porcentaje) {
+    
+        return false;
+    }
+
     @Override
     public String toString() {
-        return detallesProducto();
+    
+        return super.toString();
     }
 
-    // Sobrescribir el método aplicarDescuento
     @Override
-    public void aplicarDescuento(double porcentaje) {
-       if (porcentaje > 0 && porcentaje <= 80) { // Descuento máximo del 50% para libros
-           super.aplicarDescuento(porcentaje);
-           System.out.println("Descuento del " + porcentaje + "% aplicado al libro: " + getNombre());
-       } else {
-           System.out.println("Descuento no válido para el libro: " + getNombre() + ". El descuento debe ser entre 0% y 80%.");
-       }
+    public double calcularPrecio() {
+        // TODO Auto-generated method stub
+        return 0;
     }
+
+    @Override
+    public double calcularPrecio(double porcentaje) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean esVendible() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+
+    
+
+    
 }
