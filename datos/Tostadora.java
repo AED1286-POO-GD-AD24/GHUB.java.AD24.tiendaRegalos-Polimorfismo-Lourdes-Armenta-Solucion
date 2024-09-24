@@ -19,18 +19,24 @@ public class Tostadora extends ProductoElectroDomestico implements Vendible{
         this.numRanuras = numRanuras;
     }
 
-
+    //sobreescritura del metodo obtenerDetalles de la clase ProductoElectronico y
+    //agregando el atributo numRanuras
     @Override
     public String obtenerDetalles() {
-        // TODO Auto-generated method stub
-        return super.obtenerDetalles();
+        
+        return super.obtenerDetalles()+"Tostadora [numRanuras=" + numRanuras + "]";
     }
 
 
     @Override
+    //a un producto electrodomestico se le puede aplicar un descuento de hasta el 50%
     public boolean aplicarDescuento(double porcentaje) {
-        // TODO Auto-generated method stub
-        return false;
+        if (super.aplicarDescuento(porcentaje)){
+            this.setPrecio(this.getPrecio()-this.getPrecio()*(porcentaje/100));
+            return true;
+         }
+         else
+             return false;  
     }
 
 
@@ -58,8 +64,7 @@ public class Tostadora extends ProductoElectroDomestico implements Vendible{
 
     @Override
     public boolean esVendible() {
-        // TODO Auto-generated method stub
-        return false;
+        return true; //este producto es vendible al público
     }
 
     

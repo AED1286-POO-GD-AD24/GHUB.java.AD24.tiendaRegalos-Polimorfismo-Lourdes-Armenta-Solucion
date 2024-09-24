@@ -53,6 +53,18 @@ public abstract class ProductoElectroDomestico extends Producto{
                 + ", voltaje=" + voltaje + "]";
     }
 
+    //a un producto electrodomestico se le puede aplicar un descuento de hasta el 50%
+    @Override
+    public boolean aplicarDescuento(double porcentaje) {
+        if (porcentaje > 0 && porcentaje <=50)
+          return true;
+        else
+          return false;
+    
+    }
+
+
+
     
     
 }

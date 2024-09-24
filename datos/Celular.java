@@ -61,16 +61,23 @@ public class Celular extends ProductoElectronico implements Vendible{
         this.tipoPantalla = tipoPantalla;
     }
 
+    //sobreescritura del metodo obtenerDetalles de la clase ProductoElectronico y
+    //agregando los atributos numCamaras, sistemaOperativo, capacidadAlmacenamiento, ram y tipoPantalla
     @Override
     public String obtenerDetalles() {
-        // TODO Auto-generated method stub
-        return super.obtenerDetalles();
+        return super.obtenerDetalles()+"Celular [capacidadAlmacenamiento=" + capacidadAlmacenamiento + ", numCamaras=" + numCamaras + ", ram=" + ram + ", sistemaOperativo=" + sistemaOperativo + ", tipoPantalla=" + tipoPantalla + "]";
     }
 
     @Override
+    //se le puede aplicar un descuento de hasta el 20%
     public boolean aplicarDescuento(double porcentaje) {
-        // TODO Auto-generated method stub
-        return false;
+        if (super.aplicarDescuento(porcentaje)){
+           this.setPrecio(this.getPrecio()-this.getPrecio()*(porcentaje/100));
+           return true;
+        }
+        else
+            return false;  
+         
     }
 
     @Override
@@ -93,8 +100,7 @@ public class Celular extends ProductoElectronico implements Vendible{
 
     @Override
     public boolean esVendible() {
-        // TODO Auto-generated method stub
-        return false;
+        return true; //es vendible
     }
     
     

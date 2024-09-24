@@ -1,16 +1,19 @@
 package datos;
 import negocio.Vendible;
 
-public class Licuadora extends Producto implements Vendible{
+public class Licuadora extends ProductoElectroDomestico implements Vendible{
     private int potencia;
     private int capacidad;
 
     public Licuadora(String idProducto, String nombre, double precio, String descripcion
-                        ,int potencia, int capacidad) {
-        super(idProducto, nombre, precio, descripcion);
+                        ,String marca, String modelo, String color, int garantia, String voltaje,
+                        int potencia, int capacidad) {
+        super(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje);
+  
         this.potencia = potencia;
         this.capacidad = capacidad;
     }
+    
 
     public int getPotencia() {
         return potencia;
@@ -27,23 +30,24 @@ public class Licuadora extends Producto implements Vendible{
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
-
+    
     @Override
+    //a un producto electrodomestico se le puede aplicar un descuento de hasta el 50%
     public boolean aplicarDescuento(double porcentaje) {
-        // TODO Auto-generated method stub
-        return false;
+        if (super.aplicarDescuento(porcentaje)){
+            this.setPrecio(this.getPrecio()-this.getPrecio()*(porcentaje/100));
+            return true;
+         }
+         else
+             return false;  
     }
 
+    //sobreescritura el metodos obtenerDetalles de la clase base ProductoElectronico
+    //agregando los atributos potencia y capacidad
     @Override
     public String obtenerDetalles() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        
+        return super.obtenerDetalles()+"Licuadora [capacidad=" + capacidad + ", potencia=" + potencia + "]";
     }
 
     @Override
@@ -60,8 +64,8 @@ public class Licuadora extends Producto implements Vendible{
 
     @Override
     public boolean esVendible() {
-        // TODO Auto-generated method stub
-        return false;
+
+        return true; //este producto es vendible al público
     }
     
     

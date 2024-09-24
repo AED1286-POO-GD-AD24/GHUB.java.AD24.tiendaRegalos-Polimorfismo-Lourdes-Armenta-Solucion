@@ -8,8 +8,10 @@
 ./datos/Licuadora.java
 ./datos/Celular.java
 ./datos/Calculadora.java
+./datos/CamisetaPromocional.java
 ./datos/Tostadora.java
 ./datos/ProductoLiterario.java
+./datos/ProductoPromocional.java
 ./datos/Television.java
 ./miPrincipal/Principal.java
 ./negocio/Vendible.java

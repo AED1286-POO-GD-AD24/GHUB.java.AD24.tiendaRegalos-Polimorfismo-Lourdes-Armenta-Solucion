@@ -20,15 +20,22 @@ public class Calculadora extends ProductoElectronico  implements Vendible{
         this.tipo = tipo;
     }
 
+    //sobreescritura del metodo obtenerDetalles de la clase ProductoElectronico y
+    //agregando el atributo tipo
     @Override
     public String obtenerDetalles() {
-        return super.obtenerDetalles();
+        return super.obtenerDetalles()+"Calculadora [tipo=" + tipo + "]";
     }
 
     @Override
     public boolean aplicarDescuento(double porcentaje) {
-    
-        return false;
+        if (super.aplicarDescuento(porcentaje)){
+           this.setPrecio(this.getPrecio()-this.getPrecio()*(porcentaje/100));
+           return true;
+        }
+        else
+            return false;  
+         
     }
 
     @Override
@@ -45,15 +52,18 @@ public class Calculadora extends ProductoElectronico  implements Vendible{
 
     @Override
     public double calcularPrecio(double porcentaje) {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public boolean esVendible() {
-        // TODO Auto-generated method stub
-        return false;
+        
+        return true;//este producto es vendible al público
     }
+    
+    
+
+    
 
 
     

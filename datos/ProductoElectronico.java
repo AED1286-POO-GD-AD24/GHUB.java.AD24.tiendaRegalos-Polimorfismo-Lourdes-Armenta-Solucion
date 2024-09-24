@@ -52,5 +52,13 @@ public abstract class ProductoElectronico  extends Producto{
         return "ProductoElectronico [color=" + color + ", garantia=" + garantia + ", marca=" + marca + ", modelo=" + modelo
                 + ", voltaje=" + voltaje + "]";
     }
+
+    @Override
+    //a un producto electronico se le puede aplicar un descuento de hasta el 20%
+    public boolean aplicarDescuento(double porcentaje) {
+        if (porcentaje > 0 && porcentaje <=20)
+          return true;
+        return false;
+    }
     
 }

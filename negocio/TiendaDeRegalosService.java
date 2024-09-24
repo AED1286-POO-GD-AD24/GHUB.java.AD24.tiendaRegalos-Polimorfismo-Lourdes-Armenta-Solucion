@@ -100,10 +100,15 @@ public class TiendaDeRegalosService {
         productoDAO.agregarProducto(producto);
     }
 
-    public void agregarLicuadora(String nombre, double precio, int potencia, int capacidad) {
-        Producto producto = new Licuadora(nombre, nombre, precio, nombre, potencia, capacidad);
+    public void agregarLicuadora(String idProducto, String nombre, double precio, String descripcion,
+                                 String marca, String modelo, String color, int garantia, String voltaje,
+                                 int potencia, int capacidad) {  
+        Producto producto = new Licuadora(idProducto, nombre, precio, descripcion, marca, modelo, color, 
+                                         garantia, voltaje, potencia, capacidad);
         productoDAO.agregarProducto(producto);
     }
+
+   
 
     public void agregarTostadora(String nombre, double precio, int ranuras, String color) {
         Producto producto = new Tostadora(nombre, color, precio, color, color, color, color, ranuras, color, ranuras);

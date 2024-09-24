@@ -19,16 +19,23 @@ public class Libro extends ProductoLiterario implements Vendible{
         this.isbn = isbn;
     }
 
+    //sobreescritura del metodo obtenerDetalles de la clase ProductoLiterario y
+    //agregando el atributo isbn
     @Override
     public String obtenerDetalles() {
-        // TODO Auto-generated method stub
-        return super.obtenerDetalles();
+        return super.obtenerDetalles()+"Libro [isbn=" + isbn + "]";
     }
 
     @Override
+    //a un producto literario se le puede aplicar un descuento de hasta el 80%
     public boolean aplicarDescuento(double porcentaje) {
-        // TODO Auto-generated method stub
-        return false;
+        if (super.aplicarDescuento(porcentaje)){
+           this.setPrecio(this.getPrecio()-this.getPrecio()*(porcentaje/100));
+           return true;
+        }
+        else
+            return false;  
+         
     }
 
     @Override
@@ -51,8 +58,8 @@ public class Libro extends ProductoLiterario implements Vendible{
 
     @Override
     public boolean esVendible() {
-        // TODO Auto-generated method stub
-        return false;
+       
+        return true;//este producto es vendible al público
     }
 
     

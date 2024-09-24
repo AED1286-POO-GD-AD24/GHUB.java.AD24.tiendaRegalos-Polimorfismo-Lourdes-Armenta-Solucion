@@ -40,17 +40,25 @@ public class Television extends ProductoElectronico implements Vendible{
         this.tipoPantalla = tipoPantalla;
     }
 
+    //sobreescritura del metodo obtenerDetalles de la clase ProductoElectronico y
+    //agregando los atributos tamanio, resolucion y tipoPantalla
     @Override
     public String obtenerDetalles() {
-        // TODO Auto-generated method stub
-        return super.obtenerDetalles();
+        return super.obtenerDetalles()+"Television [resolucion=" + resolucion + ", tamanio=" + tamanio + ", tipoPantalla=" + tipoPantalla + "]";
     }
 
     @Override
+    //a un producto electronico se le puede aplicar un descuento de hasta el 20%
     public boolean aplicarDescuento(double porcentaje) {
-        // TODO Auto-generated method stub
-        return false;
+        if (super.aplicarDescuento(porcentaje)){
+            this.setPrecio(this.getPrecio()-this.getPrecio()*(porcentaje/100));
+            return true;
+         }
+         else
+             return false;  
     }
+
+    
 
     @Override
     public String toString() {
@@ -72,8 +80,7 @@ public class Television extends ProductoElectronico implements Vendible{
 
     @Override
     public boolean esVendible() {
-        // TODO Auto-generated method stub
-        return false;
+        return true; //este producto es vendible al público
     }
     
     

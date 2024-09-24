@@ -52,5 +52,14 @@ public abstract class ProductoLiterario extends Producto{
         return "ProductoLiterario [autor=" + autor + ", anioPublicacion=" + anioPublicacion + ", editorial=" + editorial + ", genero=" + genero
                 + ", numeroPaginas=" + numeroPaginas + "]";
     }
+
+    @Override
+    //a un producto literario se le puede aplicar un descuento de hasta el 80%
+    public boolean aplicarDescuento(double porcentaje) {
+        if (porcentaje > 0 && porcentaje <=80)
+          return true;
+        else
+          return false;
+    }
     
 }
