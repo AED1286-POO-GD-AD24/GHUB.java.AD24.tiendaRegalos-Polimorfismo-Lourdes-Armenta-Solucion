@@ -33,5 +33,10 @@ public class CamisetaPromocional extends ProductoPromocional {
         return super.obtenerDetalles() + ", Talla: " + talla + ", Color: " + color;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + ", Talla: " + talla + ", Color: " + color;
+    }
+
     
 }

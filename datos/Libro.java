@@ -40,19 +40,16 @@ public class Libro extends ProductoLiterario implements Vendible{
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        return super.toString()+", isbn:" + isbn ;
     }
 
     @Override
     public double calcularPrecio() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public double calcularPrecio(double porcentaje) {
-        // TODO Auto-generated method stub
         return 0;
     }
 

@@ -29,8 +29,6 @@ public abstract class Producto {
         this.nombre = nombre;
     }
 
-   
-
     public double getPrecio() {
         return precio;
     }
@@ -45,6 +43,11 @@ public abstract class Producto {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto : "+ idProducto + ", " + nombre + ", $" + precio + ", " + descripcion;
     }
     
     public abstract String obtenerDetalles();

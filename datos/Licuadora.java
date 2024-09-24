@@ -50,9 +50,16 @@ public class Licuadora extends ProductoElectroDomestico implements Vendible{
         return super.obtenerDetalles()+"Licuadora [capacidad=" + capacidad + ", potencia=" + potencia + "]";
     }
 
+    
+
+    @Override
+    public String toString() {
+        return super.toString()+", capacidad:" + capacidad + ", potencia:" + potencia;
+    }
+
+
     @Override
     public double calcularPrecio() {
-        // TODO Auto-generated method stub
         return 0;
     }
 

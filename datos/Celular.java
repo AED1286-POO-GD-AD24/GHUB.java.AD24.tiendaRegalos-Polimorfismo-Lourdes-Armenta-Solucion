@@ -82,19 +82,21 @@ public class Celular extends ProductoElectronico implements Vendible{
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+
+        return super.toString()+", capacidadAlmacenamiento=" + capacidadAlmacenamiento + 
+                                ", numCamaras=" + numCamaras + ", ram=" + ram + 
+                                ", sistemaOperativo=" + sistemaOperativo + ", tipoPantalla=" + 
+                                   tipoPantalla;
     }
 
     @Override
     public double calcularPrecio() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public double calcularPrecio(double porcentaje) {
-        // TODO Auto-generated method stub
+
         return 0;
     }
 

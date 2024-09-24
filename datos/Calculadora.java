@@ -41,12 +41,12 @@ public class Calculadora extends ProductoElectronico  implements Vendible{
     @Override
     public String toString() {
     
-        return super.toString();
+        return super.toString()+", tipo:" + tipo ;
     }
 
     @Override
     public double calcularPrecio() {
-        // TODO Auto-generated method stub
+        
         return 0;
     }
 

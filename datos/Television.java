@@ -62,19 +62,16 @@ public class Television extends ProductoElectronico implements Vendible{
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        return super.toString()+", resolucion:" + resolucion + ", tamanio:" + tamanio + ", tipoPantalla:" + tipoPantalla;
     }
 
     @Override
     public double calcularPrecio() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public double calcularPrecio(double porcentaje) {
-        // TODO Auto-generated method stub
         return 0;
     }
 

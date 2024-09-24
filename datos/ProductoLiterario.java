@@ -49,8 +49,8 @@ public abstract class ProductoLiterario extends Producto{
 
     @Override
     public String obtenerDetalles() {
-        return "ProductoLiterario [autor=" + autor + ", anioPublicacion=" + anioPublicacion + ", editorial=" + editorial + ", genero=" + genero
-                + ", numeroPaginas=" + numeroPaginas + "]";
+        return super.toString()+", autor=" + autor + ", anioPublicacion=" + anioPublicacion + ", editorial=" + editorial + ", genero=" + genero
+                + ", numeroPaginas=" + numeroPaginas;
     }
 
     @Override

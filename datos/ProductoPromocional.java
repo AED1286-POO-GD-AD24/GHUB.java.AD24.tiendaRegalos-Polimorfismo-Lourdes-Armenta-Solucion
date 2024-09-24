@@ -43,5 +43,10 @@ public class ProductoPromocional extends Producto implements Vendible{
         return "Nombre: " + getNombre() + ", Precio: " + getPrecio() + ", Descripción: " + getDescripcion();
     }
 
+    @Override
+    public String toString() {
+        return "ProductoPromocional [idProducto=" + getIdProducto() + ", nombre=" + getNombre() + ", precio=" + getPrecio() + ", descripcion=" + getDescripcion() + "]";
+    }
+
     
 }

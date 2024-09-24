@@ -39,26 +39,19 @@ public class Tostadora extends ProductoElectroDomestico implements Vendible{
              return false;  
     }
 
-
-
-
-
-
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        return super.toString()+", numRanuras:" + numRanuras;
     }
 
     @Override
     public double calcularPrecio() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public double calcularPrecio(double porcentaje) {
-        // TODO Auto-generated method stub
+
         return 0;
     }
 

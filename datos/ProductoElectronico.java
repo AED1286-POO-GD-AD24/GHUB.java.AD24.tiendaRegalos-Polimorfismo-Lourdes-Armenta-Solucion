@@ -49,7 +49,7 @@ public abstract class ProductoElectronico  extends Producto{
 
     @Override
     public String obtenerDetalles() {
-        return "ProductoElectronico [color=" + color + ", garantia=" + garantia + ", marca=" + marca + ", modelo=" + modelo
+        return super.toString()+",color=" + color + ", garantia=" + garantia + ", marca=" + marca + ", modelo=" + modelo
                 + ", voltaje=" + voltaje + "]";
     }
 

@@ -1,13 +1,19 @@
 package ui;
 
 import negocio.TiendaDeRegalosService;
-import datos.Licuadora;
 import datos.ProductoDAO;
 
 import java.util.Scanner;
 
 public class Menu {
     private TiendaDeRegalosService tiendaService;
+    String idProducto, nombre, descripcion;
+    double precio;
+    String marca, modelo, color;
+    String voltaje;
+    int garantia, capacidad;
+    String autor, editorial, genero;
+    int anioPublicacion, numeroPaginas;
 
     public Menu() {
         ProductoDAO productoDAO = new ProductoDAO(100); // Capacidad del inventario
@@ -31,8 +37,6 @@ public class Menu {
                     //
                     break;
                 case 3:{
-                   //int tipo = sel_FamiliaProducto(scanner);
-                   //agregarProducto(scanner,tipo);
                    agregarProducto(scanner);
                     break;
                 }
@@ -77,91 +81,73 @@ public class Menu {
         System.out.println("9. Calcular valor total de productos");
         System.out.println("0. Salir");
         System.out.print("Seleccione una opción: ");
+    }
 
+    private void captura_productos(Scanner scanner){
+         //Datos comunes del producto
+        System.out.print("Ingrese el Id del producto: ");
+        idProducto = scanner.nextLine();
+        System.out.print("Ingrese el nombre del producto: ");
+        nombre = scanner.nextLine();
+        System.out.print("Ingrese el precio del producto: ");
+        precio = scanner.nextDouble();
+        scanner.nextLine(); // Consumir la nueva línea
+        System.out.print("Ingrese la descripcion del producto: ");
+        descripcion = scanner.nextLine();
     }
     
     private void captura_electrodomestico(Scanner scanner){
-        System.out.println("Ingrese la marca del producto");
-                String marca = scanner.nextLine();
-                System.out.println("Ingrese el modelo del producto");
-                String modelo = scanner.nextLine();
-                System.out.println("Ingrese el color del producto");
-                String color = scanner.nextLine();
-                System.out.println("Ingrese la garantia del producto");
-                int garantia = scanner.nextInt();
-                scanner.nextLine(); // Consumir la nueva línea
-                System.out.println("Ingrese el voltaje del producto");
-                int voltaje = scanner.nextInt();
-                scanner.nextLine(); // Consumir la nueva línea
-                System.out.println("Ingrese la capacidad del producto");
-                int capacidad = scanner.nextInt();
-                scanner.nextLine(); // Consumir la nueva línea
-                //tiendaService.agregarLicuadora(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje, capacidad);
-                System.out.println("Licuadora agregada exitosamente.");
-                
+        System.out.print("Ingrese la marca del producto: ");
+        marca = scanner.nextLine();
+        System.out.print("Ingrese el modelo del producto: ");
+        modelo = scanner.nextLine();
+        System.out.print("Ingrese el color del producto: ");
+        color = scanner.nextLine();
+        System.out.print("Ingrese la garantia del producto: ");
+        garantia = scanner.nextInt();
+        scanner.nextLine(); // Consumir la nueva línea
+        System.out.print("Ingrese el voltaje del producto: ");
+        voltaje = scanner.nextLine();
+       
+        
+              
     }
-    
-    
+      
     private void captura_Electronico(Scanner scanner){
-        System.out.println("Ingrese la marca del producto");
-                String marca = scanner.nextLine();
-                System.out.println("Ingrese el modelo del producto");
-                String modelo = scanner.nextLine();
-                System.out.println("Ingrese el color del producto");
-                String color = scanner.nextLine();
-                System.out.println("Ingrese la garantia del producto");
-                int garantia = scanner.nextInt();
-                scanner.nextLine(); // Consumir la nueva línea
-                System.out.println("Ingrese el voltaje del producto");
-                int voltaje = scanner.nextInt();
-                scanner.nextLine(); // Consumir la nueva línea
-                System.out.println("Ingrese la capacidad del producto");
-                int capacidad = scanner.nextInt();
-                scanner.nextLine(); // Consumir la nueva línea
-                //tiendaService.agregarLicuadora(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje, capacidad);
-                System.out.println("Licuadora agregada exitosamente.");
-                
+        System.out.print("Ingrese la marca del producto: ");
+        marca = scanner.nextLine();
+        System.out.print("Ingrese el modelo del producto: ");
+        modelo = scanner.nextLine();
+        System.out.print("Ingrese el color del producto: ");
+        color = scanner.nextLine();
+        System.out.print("Ingrese la garantia del producto: ");
+        garantia = scanner.nextInt();
+        scanner.nextLine(); // Consumir la nueva línea
+        System.out.print("Ingrese el voltaje del producto: ");
+        voltaje = scanner.nextLine();
+       
        
     }
     
     private void captura_literario(Scanner scanner){
-        System.out.println("Ingrese la marca del producto");
-        String marca = scanner.nextLine();
-        System.out.println("Ingrese el modelo del producto");
-        String modelo = scanner.nextLine();
-        System.out.println("Ingrese el color del producto");
-        String color = scanner.nextLine();
-        System.out.println("Ingrese la garantia del producto");
-        int garantia = scanner.nextInt();
+        System.out.print("Ingrese Autor del producto: ");
+        autor = scanner.nextLine();
+        System.out.print("Ingrese Editorial del producto: ");
+        editorial = scanner.nextLine();
+        System.out.print("Ingrese género del producto: ");
+        genero = scanner.nextLine();
+        System.out.print("Ingrese Año de publicación del producto: ");
+        anioPublicacion = scanner.nextInt();
         scanner.nextLine(); // Consumir la nueva línea
-        System.out.println("Ingrese el voltaje del producto");
-        int voltaje = scanner.nextInt();
+        System.out.print("Ingrese número de páginas del producto: ");
+        numeroPaginas = scanner.nextInt();
         scanner.nextLine(); // Consumir la nueva línea
-        System.out.println("Ingrese la capacidad del producto");
-        int capacidad = scanner.nextInt();
-        scanner.nextLine(); // Consumir la nueva línea
-        //tiendaService.agregarLicuadora(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje, capacidad);
-        System.out.println("Licuadora agregada exitosamente.");
-               
-        
+         
     }
-    
-    
-
-    
-    
+     
     private void captura_Promocionales(Scanner scanner){
-        System.out.println("Seleccione el tipo de producto:");
-        System.out.println("1. Licuadora");
-        System.out.println("2. Tostadora");
-        System.out.println("0. Salir");
-        System.out.print("Seleccione una opción: ");
-        int tipoProducto = scanner.nextInt();
-        scanner.nextLine(); // Consumir la nueva línea
-        
+       
     }
-
-    
 
     private void agregarProducto(Scanner scanner) {
         System.out.println("Seleccione el tipo de producto:");
@@ -179,61 +165,93 @@ public class Menu {
         int tipoProducto = scanner.nextInt();
         scanner.nextLine(); // Consumir la nueva línea
         //Datos comunes del producto
-        System.out.println("Ingrese el Id del producto: ");
-        String idProducto = scanner.nextLine();
-        System.out.print("Ingrese el nombre del producto: ");
-        String nombre = scanner.nextLine();
-        System.out.print("Ingrese el precio del producto: ");
-        double precio = scanner.nextDouble();
-        scanner.nextLine(); // Consumir la nueva línea
-        System.out.println("Ingrese la descripcion del producto");
-        String descripcion = scanner.nextLine();
+        captura_productos(scanner);
 
         switch (tipoProducto) {
-            case 1:
+            case 1://Libro
                 captura_literario(scanner); 
-                //tiendaService.agregarLibro(nombre, precio, titulo,autor, paginas);
+                //Datos específicos del libro
+                System.out.print("Ingrese el ISBN: ");
+                String isbn = scanner.nextLine();
+
+                tiendaService.agregarLibro(idProducto, nombre, precio, descripcion, autor, editorial, 
+                                            anioPublicacion, genero, numeroPaginas, isbn);
+                
                 System.out.println("Libro agregado exitosamente."); 
                 break;
-            case 2:
+            case 2://Televisor
                 captura_Electronico(scanner);
-                
-                //tiendaService.agregarCelular(nombre, precio, marca, modelo);
-                System.out.println("Celular agregado exitosamente.");
-                
-                break;
-            case 3:
-                captura_Electronico(scanner);
-                
-                //tiendaService.agregarTelevision(nombre, precio, tamanio, resolucion);
-                System.out.println("Televisor agregado exitosamente.");
-                break;
-            case 4:
-                captura_electrodomestico(scanner);
-                
-                //tiendaService.agregarLicuadora(idProducto,nombreProducto, precioProducto,descripcion,marcaProducto,modeloProducto,
-                //                               color,garantia,voltaje, capacidad);
-                System.out.println("Licuadora agregada exitosamente.");
-                
-                
-                break;
-                
+                //Datos específicos del televisor
+                System.out.print("Ingrese el tamaño: ");
+                String tamanio = scanner.nextLine();
+                System.out.print("Ingrese la resolución: ");
+                String resolucion = scanner.nextLine();
+                System.out.print("Ingrese el tipo de pantalla: ");
+                String tipoPantalla = scanner.nextLine();
             
-            case 5:
-                captura_electrodomestico(scanner);
-                
-                //tiendaService.agregarTostadora(nombre, precio, ranuras, material);
-                System.out.println("Tostadora agregada exitosamente.");
+                tiendaService.agregarTelevision(idProducto, nombre, precio, descripcion
+                                                , marca,  modelo, color, garantia,  voltaje
+                                                ,tamanio,  resolucion, tipoPantalla);
                
+                System.out.println("Television agregado exitosamente."); 
                 break;
-            case 6:
+            case 3://Celular
                 captura_Electronico(scanner);
-               
-                //tiendaService.agregarCalculadora(nombre, precio, tipo);
-                System.out.println("Calculadora agregada exitosamente.");
-               
+                //Datos específicos del celular
+                System.out.print("Ingrese número de cámaras: ");
+                int numCamaras = scanner.nextInt();
+                scanner.nextLine(); // Consumir la nueva línea
+                System.out.print("Ingrese Sistema Opertativo: ");
+                String sistemaOperativo = scanner.nextLine();
+                System.out.print("Ingrese capacidad de almacenamiento: ");
+                int capacidadAlmacenamiento = scanner.nextInt();
+                scanner.nextLine(); // Consumir la nueva línea
+                System.out.print("Ingrese la RAM: ");
+                int ram = scanner.nextInt();
+                scanner.nextLine(); // Consumir la nueva línea
+                System.out.print("Ingrese el tipo de pantalla: ");
+                String tipoPantallaCelular = scanner.nextLine();
+                tiendaService.agregarCelular(idProducto, nombre, precio, descripcion
+                                            ,marca, modelo, color, garantia, voltaje
+                                            ,numCamaras, sistemaOperativo, capacidadAlmacenamiento
+                                            ,ram, tipoPantallaCelular);
+                System.out.println("Celular agregado exitosamente.");
                 break;
-            case 7:
+            case 4://Calculadora
+                captura_Electronico(scanner);
+                //Datos específicos de la calculadora
+                System.out.print("Ingrese el tipo de calculadora: ");
+                String tipoCalculadora = scanner.nextLine();
+                tiendaService.agregarCalculadora(idProducto, nombre, precio, descripcion
+                                                ,marca, modelo, color, garantia
+                                                ,voltaje ,tipoCalculadora);
+                System.out.println("Calculadora agregada exitosamente.");
+                break;
+            case 5://Licuadora
+                captura_electrodomestico(scanner); 
+                //Datos específicos de la licuadora
+                System.out.print("Ingrese la potencia: ");
+                int potencia = scanner.nextInt();
+                scanner.nextLine(); // Consumir la nueva línea
+                System.out.print("Ingrese la capacidad: ");
+                int capacidad = scanner.nextInt();
+                scanner.nextLine(); // Consumir la nueva línea
+                tiendaService.agregarLicuadora(idProducto, nombre, precio, descripcion, marca, modelo, color, 
+                                                garantia, voltaje, potencia, capacidad);
+                System.out.println("Licuadora agregada exitosamente.");
+                break;
+            case 6://Tostadora
+                captura_electrodomestico(scanner);
+                //datos específicos de la tostadora
+                System.out.print("Ingrese el número de ranuras: ");
+                int numRanuras = scanner.nextInt();
+                scanner.nextLine(); // Consumir la nueva línea
+                tiendaService.agregarTostadora(idProducto, nombre, precio,  descripcion
+                                                ,marca, modelo, color, garantia, voltaje
+                                                ,numRanuras);
+                System.out.println("Tostadora agregada exitosamente.");
+                break;
+            case 7://Promocionales
                 captura_Promocionales(scanner);
                 //tiendaService.agregarProductoPromocional(nombre, precio, descripcion, marca, modelo, color, garantia, voltaje, capacidad);
                 System.out.println("Producto promocional agregado exitosamente.");
@@ -243,7 +261,6 @@ public class Menu {
                 return;
     }
 
-   
     }
 
     private void eliminarProducto(Scanner scanner) {

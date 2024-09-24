@@ -1,5 +1,4 @@
 package datos;
-import negocio.*;
 
 
 public class ProductoDAO {
