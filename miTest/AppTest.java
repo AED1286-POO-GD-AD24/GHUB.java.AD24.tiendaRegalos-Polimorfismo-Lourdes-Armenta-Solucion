@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class AppTest {
-    /* 
+    
     @Test 
     public void testMenuInitialization() {
         Menu menu = new Menu();
@@ -23,10 +23,13 @@ class AppTest {
     }
 
     @Test
-    public void testProducto(){
-        // Prueba de getNombre
-        Producto producto = new Producto("Producto de Prueba", 19.99);
-        assertEquals("Producto de Prueba", producto.getNombre(), "El nombre del producto debe ser 'Producto de Prueba'");
+    public void testProducto() {
+        // Prueba de constructor y getNombre
+        Producto producto = new Libro("1", "cien años de soledad", 19.99, "Descripción de prueba", "Productoliterario", "Gabriel Garcia Marquez", "Editorial", 1967, "Realismo mágico", 500, "978-84-376-0494-7");  
+       
+      
+        
+        assertEquals("cien años de soledad", producto.getNombre(), "El nombre del producto debe ser 'cien años de soledad'");
 
         // Prueba de setNombre
         producto.setNombre("Producto de Prueba 2");
@@ -38,8 +41,20 @@ class AppTest {
         // Prueba de setPrecio
         producto.setPrecio(14.99);
         assertEquals(14.99, producto.getPrecio(), "El precio del producto debe ser 14.99 después de usar setPrecio");
-    }
 
+        // Prueba de getDescripcion
+        assertEquals("Descripción de prueba", producto.getDescripcion(), "La descripción del producto debe ser 'Descripción de prueba'");
+
+        // Prueba de setDescripcion
+        producto.setDescripcion("Nueva descripción de prueba");
+        assertEquals("Nueva descripción de prueba", producto.getDescripcion(), "La descripción del producto debe ser 'Nueva descripción de prueba' después de usar setDescripcion");
+
+        // Prueba de getFamilia
+        assertEquals("ProductoLiterario", producto.getFamilia(), "La familia del producto debe ser 'ProductoLiterario'");
+
+       
+    }
+    /* 
     @Test
     public void testAplicarDescuentoHerenciaProducto() {
         // Crear una instancia de Producto usando Libro
@@ -405,5 +420,6 @@ class AppTest {
         // Verificar el método toString en Tostadora
         assertEquals("Producto: Black & Decker, Precio: $50.0, Ranuras: 2, Color: plata", tostadora.toString());
     }
- */
+        */
+ 
 }
