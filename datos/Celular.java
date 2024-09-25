@@ -8,12 +8,13 @@ public class Celular extends ProductoElectronico implements Vendible{
     private int capacidadAlmacenamiento;
     private int ram;
     private String tipoPantalla;
+    final String familia = super.getFamilia();
 
-    public Celular(String idProducto, String nombre, double precio, String descripcion
+    public Celular(String idProducto, String nombre, double precio, String descripcion, String familia
                     ,String marca, String modelo, String color, int garantia, String voltaje
                     ,int numCamaras, String sistemaOperativo, int capacidadAlmacenamiento, int ram, String tipoPantalla)
     {
-        super(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje);
+        super(idProducto, nombre, precio, descripcion, familia, marca, modelo, color, garantia, voltaje);
         this.numCamaras = numCamaras;
         this.sistemaOperativo = sistemaOperativo;
         this.capacidadAlmacenamiento = capacidadAlmacenamiento;
@@ -59,6 +60,11 @@ public class Celular extends ProductoElectronico implements Vendible{
 
     public void setTipoPantalla(String tipoPantalla) {
         this.tipoPantalla = tipoPantalla;
+    }
+
+    @Override
+    public String getFamilia(){
+        return super.getFamilia();
     }
 
     //sobreescritura del metodo obtenerDetalles de la clase ProductoElectronico y

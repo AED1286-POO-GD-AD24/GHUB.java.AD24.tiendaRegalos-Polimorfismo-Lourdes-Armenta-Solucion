@@ -1,14 +1,18 @@
 package datos;
 
-public abstract class ProductoLiterario extends Producto{
+import negocio.Vendible;
+
+public abstract class ProductoLiterario extends Producto implements Vendible{
     private String autor;
     private String editorial;
     private int anioPublicacion;
     private String genero;
     private int numeroPaginas;
+    final String familia = "ProductoLiterario";
     public ProductoLiterario(String idProducto, String nombre, double precio, String descripcion
+                        ,String familia
                         ,String autor, String editorial, int anioPublicacion, String genero, int numeroPaginas) {
-        super(idProducto, nombre, precio, descripcion);
+        super(idProducto, nombre, precio, descripcion,familia);
         this.autor = autor;
         this.editorial = editorial;  
         this.anioPublicacion = anioPublicacion;
@@ -60,6 +64,28 @@ public abstract class ProductoLiterario extends Producto{
           return true;
         else
           return false;
+    }
+
+    
+
+    
+
+
+    @Override
+    public double calcularPrecio() {
+        return 0;
+    }
+    
+    @Override
+    public double calcularPrecio(double porcentaje) {
+        return 0;
+    }
+    @Override
+    public boolean esVendible() {
+        return true;
+    }
+    public String getFamilia(){
+        return "ProductoLiterario";
     }
     
 }

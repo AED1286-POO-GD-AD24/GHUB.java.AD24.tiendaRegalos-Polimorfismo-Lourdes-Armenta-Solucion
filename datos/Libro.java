@@ -2,11 +2,12 @@ package datos;
 import negocio.Vendible;
 public class Libro extends ProductoLiterario implements Vendible{
     private String isbn;
+    final String familia = super.getFamilia();
     
-    public Libro(String idProducto, String nombre, double precio, String descripcion
+    public Libro(String idProducto, String nombre, double precio, String descripcion, String familia
                         ,String autor, String editorial, int anioPublicacion, String genero, int numeroPaginas, String isbn) 
             {
-                super(idProducto, nombre, precio, descripcion, autor, editorial, anioPublicacion, genero, numeroPaginas);
+                super(idProducto, nombre, precio, descripcion, familia, autor, editorial, anioPublicacion, genero, numeroPaginas);
                 this.isbn = isbn;
 
             }
@@ -18,6 +19,13 @@ public class Libro extends ProductoLiterario implements Vendible{
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
+
+    @Override
+    //metodo getFamilia sobreescrito de la clase ProductoLiterario
+    public String getFamilia(){
+        return super.getFamilia();
+    }
+
 
     //sobreescritura del metodo obtenerDetalles de la clase ProductoLiterario y
     //agregando el atributo isbn

@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Menu {
     private TiendaDeRegalosService tiendaService;
     String idProducto, nombre, descripcion;
+    String familia;
     double precio;
     String marca, modelo, color;
     String voltaje;
@@ -34,7 +35,7 @@ public class Menu {
                     tiendaService.presentarse();
                     break;
                 case 2:
-                    //
+                    mostrarFamiliaProducto(scanner);
                     break;
                 case 3:{
                    agregarProducto(scanner);
@@ -81,6 +82,12 @@ public class Menu {
         System.out.println("9. Calcular valor total de productos");
         System.out.println("0. Salir");
         System.out.print("Seleccione una opción: ");
+    }
+    
+    private void mostrarFamiliaProducto(Scanner scanner) {
+        System.out.print("Ingrese el nombre de la familia de producto: ");
+        String familia = scanner.nextLine();
+        tiendaService.mostrarFamiliaProducto(familia);
     }
 
     private void captura_productos(Scanner scanner){
@@ -173,8 +180,10 @@ public class Menu {
                 //Datos específicos del libro
                 System.out.print("Ingrese el ISBN: ");
                 String isbn = scanner.nextLine();
+                familia = tiendaService.obtenerFamiliaProductoLiterario();
+                
 
-                tiendaService.agregarLibro(idProducto, nombre, precio, descripcion, autor, editorial, 
+                tiendaService.agregarLibro(idProducto, nombre, precio, descripcion, familia,autor, editorial, 
                                             anioPublicacion, genero, numeroPaginas, isbn);
                 
                 System.out.println("Libro agregado exitosamente."); 
@@ -188,8 +197,9 @@ public class Menu {
                 String resolucion = scanner.nextLine();
                 System.out.print("Ingrese el tipo de pantalla: ");
                 String tipoPantalla = scanner.nextLine();
+                familia = tiendaService.obtenerFamiliaProductoElectronico();
             
-                tiendaService.agregarTelevision(idProducto, nombre, precio, descripcion
+                tiendaService.agregarTelevision(idProducto, nombre, precio, descripcion,familia
                                                 , marca,  modelo, color, garantia,  voltaje
                                                 ,tamanio,  resolucion, tipoPantalla);
                
@@ -211,7 +221,11 @@ public class Menu {
                 scanner.nextLine(); // Consumir la nueva línea
                 System.out.print("Ingrese el tipo de pantalla: ");
                 String tipoPantallaCelular = scanner.nextLine();
-                tiendaService.agregarCelular(idProducto, nombre, precio, descripcion
+
+                familia= tiendaService.obtenerFamiliaProductoElectronico();
+
+
+                tiendaService.agregarCelular(idProducto, nombre, precio, descripcion,familia
                                             ,marca, modelo, color, garantia, voltaje
                                             ,numCamaras, sistemaOperativo, capacidadAlmacenamiento
                                             ,ram, tipoPantallaCelular);
@@ -222,7 +236,9 @@ public class Menu {
                 //Datos específicos de la calculadora
                 System.out.print("Ingrese el tipo de calculadora: ");
                 String tipoCalculadora = scanner.nextLine();
-                tiendaService.agregarCalculadora(idProducto, nombre, precio, descripcion
+
+                familia = tiendaService.obtenerFamiliaProductoElectronico();
+                tiendaService.agregarCalculadora(idProducto, nombre, precio, descripcion,familia
                                                 ,marca, modelo, color, garantia
                                                 ,voltaje ,tipoCalculadora);
                 System.out.println("Calculadora agregada exitosamente.");
@@ -236,7 +252,10 @@ public class Menu {
                 System.out.print("Ingrese la capacidad: ");
                 int capacidad = scanner.nextInt();
                 scanner.nextLine(); // Consumir la nueva línea
-                tiendaService.agregarLicuadora(idProducto, nombre, precio, descripcion, marca, modelo, color, 
+
+                familia = tiendaService.obtenerFamiliaProductoElectrodomestico();
+                tiendaService.agregarLicuadora(idProducto, nombre, precio, descripcion, familia, 
+                                                marca, modelo, color, 
                                                 garantia, voltaje, potencia, capacidad);
                 System.out.println("Licuadora agregada exitosamente.");
                 break;
@@ -246,14 +265,23 @@ public class Menu {
                 System.out.print("Ingrese el número de ranuras: ");
                 int numRanuras = scanner.nextInt();
                 scanner.nextLine(); // Consumir la nueva línea
-                tiendaService.agregarTostadora(idProducto, nombre, precio,  descripcion
+
+                familia = tiendaService.obtenerFamiliaProductoElectrodomestico();
+                tiendaService.agregarTostadora(idProducto, nombre, precio,  descripcion,familia
                                                 ,marca, modelo, color, garantia, voltaje
                                                 ,numRanuras);
                 System.out.println("Tostadora agregada exitosamente.");
                 break;
             case 7://Promocionales
                 captura_Promocionales(scanner);
-                //tiendaService.agregarProductoPromocional(nombre, precio, descripcion, marca, modelo, color, garantia, voltaje, capacidad);
+                //Datos específicos del producto promocional
+                System.out.print("ingrese talla del producto: ");
+                String talla = scanner.nextLine();
+                System.out.print("ingrese color del producto: ");
+                String colorPromocional = scanner.nextLine();
+                familia = tiendaService.obtenerFamiliaProductoPromocional();
+                tiendaService.agregarProductoPromocional(idProducto, nombre, precio, descripcion, 
+                                                        familia, talla, colorPromocional);
                 System.out.println("Producto promocional agregado exitosamente.");
                 break;
             default:

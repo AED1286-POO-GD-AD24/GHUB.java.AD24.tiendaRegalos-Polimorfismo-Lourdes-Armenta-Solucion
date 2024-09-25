@@ -105,4 +105,16 @@ public class ProductoDAO {
         // En este ejemplo, no se necesita hacer nada porque estamos usando un arreglo en memoria
         // En una implementación real, aquí se actualizaría el producto en la base de datos
     }
+
+    public void mostrarFamiliaProducto(String familia) {
+        System.out.println("Productos de la familia: " + familia);
+        for (int i = 0; i < numProductos; i++) {
+            
+            if (productos[i].getFamilia().toLowerCase().contains(familia.toLowerCase())) {
+                System.out.println(productos[i].obtenerDetalles());
+                
+            }
+            
+        }
+    }
 }

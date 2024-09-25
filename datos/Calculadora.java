@@ -1,14 +1,15 @@
 package datos;
-import negocio.Vendible;
 
-public class Calculadora extends ProductoElectronico  implements Vendible{
+
+public class Calculadora extends ProductoElectronico  {
     private String tipo;
+    final String familia = super.getFamilia();
 
-    public Calculadora(String idProducto, String nombre, double precio, String descripcion
+    public Calculadora(String idProducto, String nombre, double precio, String descripcion, String familia
                        ,String marca, String modelo, String color, int garantia, 
                        String voltaje ,String tipo) {
 
-        super(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje);
+        super(idProducto, nombre, precio, descripcion, familia, marca, modelo, color, garantia, voltaje);
         this.tipo = tipo;
     }
 
@@ -18,6 +19,11 @@ public class Calculadora extends ProductoElectronico  implements Vendible{
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+    //metodo getFamilia sobreescrito de la clase ProductoElectronico
+    @Override
+    public String getFamilia(){
+        return super.getFamilia();
     }
 
     //sobreescritura del metodo obtenerDetalles de la clase ProductoElectronico y
@@ -44,22 +50,7 @@ public class Calculadora extends ProductoElectronico  implements Vendible{
         return super.toString()+", tipo:" + tipo ;
     }
 
-    @Override
-    public double calcularPrecio() {
-        
-        return 0;
-    }
-
-    @Override
-    public double calcularPrecio(double porcentaje) {
-        return 0;
-    }
-
-    @Override
-    public boolean esVendible() {
-        
-        return true;//este producto es vendible al público
-    }
+    
     
     
 

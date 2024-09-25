@@ -4,13 +4,18 @@ public abstract class Producto {
     private String nombre;
     private double precio;
     private String descripcion;
+    private  String familia;
 
+    public Producto() {
 
-    public Producto(String idProducto, String nombre,  double precio,  String descripcion) {
+    }
+    public Producto(String idProducto, String nombre,  double precio,  
+                    String descripcion, String familia) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
         this.descripcion = descripcion;
+        this.familia = familia;
     }
 
     public String getIdProducto() {
@@ -45,6 +50,16 @@ public abstract class Producto {
         this.descripcion = descripcion;
     }
 
+    public String getFamilia() {
+        return familia;
+    }
+
+    public void setFamilia(String familia) {
+        this.familia = familia;
+    }
+
+    
+
     @Override
     public String toString() {
         return "Producto : "+ idProducto + ", " + nombre + ", $" + precio + ", " + descripcion;
@@ -53,6 +68,8 @@ public abstract class Producto {
     public abstract String obtenerDetalles();
 
     public abstract boolean aplicarDescuento(double porcentaje);
+
+   
 
 
 }

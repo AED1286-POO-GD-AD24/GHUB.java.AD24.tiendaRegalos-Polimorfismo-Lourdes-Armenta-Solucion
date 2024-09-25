@@ -4,11 +4,12 @@ import negocio.Vendible;
 public class Licuadora extends ProductoElectroDomestico implements Vendible{
     private int potencia;
     private int capacidad;
+    final String familia = super.getFamilia();
 
-    public Licuadora(String idProducto, String nombre, double precio, String descripcion
+    public Licuadora(String idProducto, String nombre, double precio, String descripcion, String familia
                         ,String marca, String modelo, String color, int garantia, String voltaje,
                         int potencia, int capacidad) {
-        super(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje);
+        super(idProducto, nombre, precio, descripcion, familia, marca, modelo, color, garantia, voltaje);
   
         this.potencia = potencia;
         this.capacidad = capacidad;
@@ -30,6 +31,13 @@ public class Licuadora extends ProductoElectroDomestico implements Vendible{
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
+
+    //metodo getFamilia sobreescrito de la clase ProductoElectronico
+    @Override
+    public String getFamilia(){
+        return super.getFamilia();
+    }
+
     
     @Override
     //a un producto electrodomestico se le puede aplicar un descuento de hasta el 50%

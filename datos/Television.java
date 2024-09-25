@@ -5,12 +5,13 @@ public class Television extends ProductoElectronico implements Vendible{
     private String tamanio;
     private String resolucion;
     private String tipoPantalla;
+    private final String familia = super.getFamilia();
 
-    public Television(String idProducto, String nombre, double precio, String descripcion
+    public Television(String idProducto, String nombre, double precio, String descripcion, String familia
                     ,String marca, String modelo, String color, int garantia, String voltaje
                     ,String tamanio, String resolucion, String tipoPantalla)
     {
-        super(idProducto, nombre, precio, descripcion, marca, modelo, color, garantia, voltaje);
+        super(idProducto, nombre, precio, descripcion, familia,marca, modelo, color, garantia, voltaje);
         this.tamanio = tamanio;
         this.resolucion = resolucion;
         this.tipoPantalla = tipoPantalla;
@@ -40,11 +41,18 @@ public class Television extends ProductoElectronico implements Vendible{
         this.tipoPantalla = tipoPantalla;
     }
 
+    //metodo getFamilia sobreescrito de la clase ProductoElectronico
+    @Override
+    public String getFamilia(){
+        return super.getFamilia();
+    }
+
+
     //sobreescritura del metodo obtenerDetalles de la clase ProductoElectronico y
     //agregando los atributos tamanio, resolucion y tipoPantalla
     @Override
     public String obtenerDetalles() {
-        return super.obtenerDetalles()+"Television [resolucion=" + resolucion + ", tamanio=" + tamanio + ", tipoPantalla=" + tipoPantalla + "]";
+        return super.obtenerDetalles()+"Television 3resolucion=" + resolucion + ", tamanio=" + tamanio + ", tipoPantalla=" + tipoPantalla;
     }
 
     @Override

@@ -2,8 +2,14 @@ package datos;
 import negocio.Vendible;
 
 public class ProductoPromocional extends Producto implements Vendible{
-    public ProductoPromocional(String idProducto, String nombre, double precio, String descripcion) {
-        super(idProducto, nombre, precio, descripcion);
+    final String familia = "ProductoPromocional";
+    public ProductoPromocional(String idProducto, String nombre, double precio, String descripcion,
+                               String familia) {
+        super(idProducto, nombre, precio, descripcion,familia);
+    }
+
+    public String getFamilia(){
+        return "Producto Promocional";
     }
 
 
@@ -14,16 +20,14 @@ public class ProductoPromocional extends Producto implements Vendible{
 
     @Override
     public double calcularPrecio() {
-        return getPrecio(); // Retorna el precio original
+        return 0;
     }
 
     // Calcula el precio con un descuento valido
     @Override
     public double calcularPrecio(double porcentaje) {
-        if (aplicarDescuento(porcentaje)) {
-            return getPrecio() - getPrecio() * (porcentaje / 100);
-        }
-        return getPrecio();
+        return 0;
+        
     }
 
    

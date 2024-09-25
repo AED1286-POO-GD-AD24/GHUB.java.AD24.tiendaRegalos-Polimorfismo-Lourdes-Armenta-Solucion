@@ -1,14 +1,22 @@
 package datos;
+import negocio.Vendible;
 
-public abstract class ProductoElectroDomestico extends Producto{
+public abstract class ProductoElectroDomestico extends Producto implements Vendible{
     private String marca;
     private String modelo;
     private String color;
     private int garantia;
     private String voltaje;
-    public ProductoElectroDomestico(String idProducto, String nombre, double precio, String descripcion
+    final String familia = "ProductoElectrodomestico";
+
+    public ProductoElectroDomestico() {
+        super();
+    }
+    
+    public ProductoElectroDomestico(String idProducto, String nombre, double precio
+                        ,String descripcion,String familia
                         ,String marca, String modelo, String color, int garantia, String voltaje) {
-        super(idProducto, nombre, precio, descripcion);
+        super(idProducto, nombre, precio, descripcion,familia);
         this.marca = marca;
         this.modelo = modelo;  
         this.color = color;
@@ -61,6 +69,27 @@ public abstract class ProductoElectroDomestico extends Producto{
         else
           return false;
     
+    }
+    
+
+    @Override
+    public double calcularPrecio() {
+        return 0;
+    }
+
+    @Override
+    public double calcularPrecio(double porcentaje) {
+        return 0;
+    }
+
+    @Override
+    public boolean esVendible() {
+    
+        return true;
+    }
+
+    public String getFamilia(){
+        return "ProductoElectrodomestico";
     }
 
 
