@@ -16,6 +16,31 @@ public class TiendaDeRegalos{
         this.direccion = direccion;
         this.inventario = new Inventario();
     }
+    
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Inventario getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(Inventario inventario) {
+        this.inventario = inventario;
+    }
 
     public void presentarse() {
         System.out.println("Bienvenido a " + nombre + " ubicada en " + direccion);
@@ -68,9 +93,14 @@ public class TiendaDeRegalos{
 
     public void venderProducto(String nombreProducto) {
         Producto producto = buscarProducto(nombreProducto);
+        
         if (producto != null) {
-            inventario.eliminarProducto(producto);
-            System.out.println("Producto vendido: " + nombreProducto);
+            
+            if(inventario.eliminarProducto(nombreProducto))
+                System.out.println("Producto vendido: " + nombreProducto);
+            else
+                System.out.println("Por algun extrano motivo no se puedo vender: " + nombreProducto);
+
         } else {
             System.out.println("Producto no encontrado: " + nombreProducto);
         }

@@ -10,10 +10,13 @@ import datos.Libro;
 import datos.Television;
 import datos.Celular; 
 import datos.Licuadora;
-import datos.Tostadora;   
+import datos.Tostadora;
+import negocio.TiendaDeRegalos;
 import datos.Calculadora;
 import datos.CamisetaPromocional;
 import datos.Inventario;
+import negocio.TiendaDeRegalos;
+
 
 
 import org.junit.jupiter.api.Test;
@@ -28,8 +31,16 @@ class AppTest {
 
     private Inventario inventario;
 
+    private TiendaDeRegalos tienda;
+    private Producto producto1;
+    private Producto producto2;
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
     @BeforeEach
     public void setUp() {
+
+        // Crear un inventario con 7 productos
         inventario = new Inventario(7); // Suponiendo que el inventario puede contener hasta 10 productos
         inventario.agregarProducto(new Television("1", "Televisor 4K", 499.99, "Televisor de alta definición", "ProductoElectronico",
             "Samsung", "QLED", "Negro", 2, "220V", "65 pulg", "8K: 7680 x 4320", "LCD"));
@@ -45,6 +56,22 @@ class AppTest {
              "L", "Rojo"));
         inventario.agregarProducto(new Libro("4", "Cien Años de Soledad", 19.99, "Descripción de prueba", "ProductoLiterario",
             "Gabriel Garcia Marquez", "Editorial", 1967, "Realismo mágico", 500, "978-84-376-0494-7"));
+    
+        
+        //creo una Tienda de regalos con capacidad para 20 productos
+        tienda = new TiendaDeRegalos(20);
+        tienda.setNombre("Tienda de Lulú");
+        tienda.setDireccion("Culiacán, Sinaloa");
+
+        producto1 = new ProductoLiterario("3", "Revista",50.00,"Revista National Geographic", "ProductoLiterario", 
+                               "National Geographic Society", "Editorial", 2000, "Ciencia y Naturaleza",20);
+
+       producto2 = new ProductoLiterario("2","LibroABC", 250,"Libro de prueba","ProductoLiterario",
+                                     "autor","editorial",2000,"genero",0);
+
+       tienda.agregarProducto(producto1);
+       tienda.agregarProducto(producto2);
+       System.setOut(new PrintStream(outContent));
     }
 
     @Test
@@ -100,6 +127,15 @@ class AppTest {
         // Restaurar la salida estándar
         System.setOut(System.out);
     }
+    @Test
+    public void testVenderProductoExistente() {
+        System.out.println("pude?"+inventario.eliminarProducto("LibroABC"));
+        tienda.venderProducto("LibroABC");
+        assertNull(tienda.buscarProducto("LibroABC"));
+        assertTrue(outContent.toString().contains("Producto vendido: LibroABC"));
+    }
+
+
     
     @Test 
     public void testMenuInitialization() {

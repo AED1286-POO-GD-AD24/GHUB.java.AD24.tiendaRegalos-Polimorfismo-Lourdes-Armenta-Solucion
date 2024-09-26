@@ -2,7 +2,7 @@ package datos;
 
 import negocio.Vendible;
 
-public abstract class ProductoLiterario extends Producto implements Vendible{
+public class ProductoLiterario extends Producto implements Vendible{
     private String autor;
     private String editorial;
     private int anioPublicacion;

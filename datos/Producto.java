@@ -64,6 +64,10 @@ public abstract class Producto {
     public String toString() {
         return "Producto : "+ idProducto + ", " + nombre + ", $" + precio + ", " + descripcion;
     }
+
+    
+
+    
     
     public abstract String obtenerDetalles();
 

@@ -13,6 +13,7 @@
 ./datos/ProductoLiterario.java
 ./datos/ProductoPromocional.java
 ./datos/Television.java
+./miPrincipal/borrame.java
 ./miPrincipal/Principal.java
 ./negocio/Vendible.java
 ./negocio/TiendaDeRegalos.java

@@ -28,28 +28,46 @@ public class Inventario{
         }
     }
 
-    public void eliminarProducto(String nombre) {
+    public boolean eliminarProducto(String nombre) {
+        
+        
         for (int i = 0; i < contador; i++) {
+            
             if (productos[i].getNombre().equals(nombre)) {
-                for (int j = i; j < contador - 1; j++) {
-                    productos[j] = productos[j + 1];
+               
+                if (i < contador - 1) {
+                    
+                    for (int j = i; j < contador - 1; j++) {
+                        productos[j] = productos[j + 1];
+                    }
+                }else{
+                    productos[i] = null;
                 }
                 contador--;
-                break;
+                
+                return true;
             }
         }
+        return false;
+        
+        
+
+        
     }
 
-    public void eliminarProducto(Producto producto) {
+    public boolean eliminarProducto(Producto producto) {
         for (int i = 0; i < contador; i++) {
             if (productos[i].equals(producto)) {
                 for (int j = i; j < contador - 1; j++) {
                     productos[j] = productos[j + 1];
-                }
+                }    
                 contador--;
-                break;
+                //break;
+                return true;
             }
+           
         }
+        return false;
     }
 
     public Producto buscarProducto(String nombre) {
