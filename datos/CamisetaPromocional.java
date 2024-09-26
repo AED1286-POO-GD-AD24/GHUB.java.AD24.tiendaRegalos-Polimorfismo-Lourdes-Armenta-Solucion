@@ -29,6 +29,8 @@ public class CamisetaPromocional extends ProductoPromocional {
         this.color = color;
     }
 
+    
+
     //metodo getFamilia sobreescrito de la clase ProductoPromocional
     @Override
     public String getFamilia(){

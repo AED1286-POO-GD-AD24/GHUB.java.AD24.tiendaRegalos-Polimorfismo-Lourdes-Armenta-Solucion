@@ -2,19 +2,104 @@ package miTest;
 
 import ui.Menu;
 import datos.Producto;
+import datos.ProductoElectroDomestico;
+import datos.ProductoElectronico;
+import datos.ProductoLiterario;
+import datos.ProductoPromocional;
 import datos.Libro;
 import datos.Television;
 import datos.Celular; 
 import datos.Licuadora;
 import datos.Tostadora;   
 import datos.Calculadora;
+import datos.CamisetaPromocional;
+import datos.Inventario;
 
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 
 class AppTest {
+
+    private Inventario inventario;
+
+    @BeforeEach
+    public void setUp() {
+        inventario = new Inventario(7); // Suponiendo que el inventario puede contener hasta 10 productos
+        inventario.agregarProducto(new Television("1", "Televisor 4K", 499.99, "Televisor de alta definición", "ProductoElectronico",
+            "Samsung", "QLED", "Negro", 2, "220V", "65 pulg", "8K: 7680 x 4320", "LCD"));
+        inventario.agregarProducto(new Celular("2", "Celular Android", 299.99, "Celular de última generación", "ProductoElectronico",
+            "Samsung", "Galaxy S21", "Azul", 1, "110V", 3, "IOS", 4, 64, "tactil"));
+        inventario.agregarProducto(new Calculadora("3", "Calculadora Científica", 19.99, "Calculadora con funciones avanzadas", "Producto Electronico",
+            "Casio", "FX-991ES", "Gris", 1, "N/A", "Científica"));
+        inventario.agregarProducto(new Licuadora("7", "Licuadora Oster", 79.99, "Licuadora de alta velocidad con 10 velocidades", "ProductoElectrodomestico",
+            "Oster", "BLSTMG-W00", "Blanco", 2, "110V", 600, 1500));
+        inventario.agregarProducto(new Tostadora("8", "Tostadora Philips", 49.99, "Tostadora de 4 rebanadas con control de temperatura","ProductoElectrodomestico",
+             "Philips", "HD2581/00", "Negro", 2, "110V", 4));
+        inventario.agregarProducto(new CamisetaPromocional("9", "Camiseta Deportiva", 19.99, "Camiseta de algodón para deportes","ProductoPromocional",
+             "L", "Rojo"));
+        inventario.agregarProducto(new Libro("4", "Cien Años de Soledad", 19.99, "Descripción de prueba", "ProductoLiterario",
+            "Gabriel Garcia Marquez", "Editorial", 1967, "Realismo mágico", 500, "978-84-376-0494-7"));
+    }
+
+    @Test
+    public void testCalcularValorTotalProductos() {
+        double totalEsperado = 499.99 + 299.99 + 19.99 + 79.99 + 49.99 + 19.99 + 19.99;
+        assertEquals(totalEsperado, inventario.calcularValorTotalProductos(), 0.01);
+    }
+
+    @Test
+    public void testAplicarDescuentoATodos() {
+        inventario.aplicarDescuentoATodos(10); // Aplicar un descuento del 10% a todos los productos
+        // Verificar los precios después del descuento
+        /* 
+        Producto lista[] = inventario.getProductos();
+      
+        assertEquals(449.99, lista[0].getPrecio(), 0.01); // Televisor
+        assertEquals(269.99, lista[1].getPrecio(), 0.01); // Celular
+        assertEquals(17.99, lista[2].getPrecio(), 0.01);  // Calculadora
+        assertEquals(71.99, lista[3].getPrecio(), 0.01);  // Licuadora
+        assertEquals(44.99, lista[4].getPrecio(), 0.01);  // Tostadora
+        assertEquals(19.99, lista[5].getPrecio(), 0.01);  // Camiseta
+        assertEquals(17.99, lista[6].getPrecio(), 0.01);  // Libro
+        */
+
+        assertEquals(449.99, inventario.getProductos()[0].getPrecio(), 0.01); // Televisor
+        assertEquals(269.99, inventario.getProductos()[1].getPrecio(), 0.01); // Celular
+        assertEquals(17.99, inventario.getProductos()[2].getPrecio(), 0.01);  // Calculadora
+        assertEquals(71.99, inventario.getProductos()[3].getPrecio(), 0.01);  // Licuadora
+        assertEquals(44.99, inventario.getProductos()[4].getPrecio(), 0.01);  // Tostadora
+        assertEquals(19.99, inventario.getProductos()[5].getPrecio(), 0.01);  // Camiseta
+        assertEquals(17.99, inventario.getProductos()[6].getPrecio(), 0.01);  // Libro
+        
+    }
+
+    @Test
+    public void testMostrarInventario() {
+        // Redirigir la salida estándar para capturar el output de mostrarInventario
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        inventario.mostrarInventario();
+
+        // Verificar que la salida contiene los productos esperados
+        String output = outContent.toString();
+        assertTrue(output.contains("Televisor 4K"));
+        assertTrue(output.contains("Celular Android"));
+        assertTrue(output.contains("Calculadora Científica"));
+        assertTrue(output.contains("Licuadora Oster"));
+        assertTrue(output.contains("Tostadora Philips"));
+        assertTrue(output.contains("Camiseta Deportiva"));
+        assertTrue(output.contains("Cien Años de Soledad"));
+
+        // Restaurar la salida estándar
+        System.setOut(System.out);
+    }
     
     @Test 
     public void testMenuInitialization() {
@@ -27,8 +112,6 @@ class AppTest {
         // Prueba de constructor y getNombre
         Producto producto = new Libro("1", "cien años de soledad", 19.99, "Descripción de prueba", "Productoliterario", "Gabriel Garcia Marquez", "Editorial", 1967, "Realismo mágico", 500, "978-84-376-0494-7");  
        
-      
-        
         assertEquals("cien años de soledad", producto.getNombre(), "El nombre del producto debe ser 'cien años de soledad'");
 
         // Prueba de setNombre
@@ -54,372 +137,157 @@ class AppTest {
 
        
     }
-    /* 
+    
     @Test
     public void testAplicarDescuentoHerenciaProducto() {
         // Crear una instancia de Producto usando Libro
-        Producto producto = new Libro("Libro1", 100.0, "El Quijote", "Miguel de Cervantes ", 500);
+        Producto producto = new Libro("1", "Cien Años de Soledad", 19.99, "Descripción de prueba", "Productoliterario", "Gabriel Garcia Marquez", "Editorial", 1967, "Realismo mágico", 500, "978-84-376-0494-7");  
 
 
         // Aplicar un descuento válido
         producto.aplicarDescuento(20);
-        assertEquals(80.0, producto.getPrecio(), 0.01);
+        assertEquals(16.0, producto.getPrecio(), 0.01);
 
-        // Aplicar un descuento no válido
-        producto.aplicarDescuento(60);
-        assertEquals(80.0, producto.getPrecio(), 0.01); // El precio no debe cambiar
+        // Aplicar un descuento no válido, porque es mayor a 80%
+        //entonces el costo no debe cambiar
+        producto.aplicarDescuento(90);
+        assertEquals(16.0, producto.getPrecio(), 0.01); // El precio no debe cambiar
 
         // Aplicar otro descuento válido
-        producto.aplicarDescuento(10);
-        assertEquals(72.0, producto.getPrecio(), 0.01);
-    }
-
-
-
-    @Test
-    public void testLibro() {
-        // Verificar que Libro es una subclase de Producto
-        Libro libro = new Libro("Libro1", 29.99, "Cien Años de Soledad", "Gabriel Garcia Marquez", 500);
-
-        // Prueba de getNombre
-        assertEquals("Libro1", libro.getNombre(), "El nombre del libro debe ser 'Libro1'");
-
-        // Prueba de setNombre
-        libro.setTitulo("El Amor en los Tiempos del Cólera");
-        assertEquals("El Amor en los Tiempos del Cólera", libro.getTitulo(), "El titulo del libro debe ser 'El Amor en los Tiempos del Cólera' después de usar setNombre");
-
-        // Prueba de getPrecio
-        assertEquals(29.99, libro.getPrecio(), "El precio del libro debe ser 29.99");
-
-        // Prueba de setPrecio
-        libro.setPrecio(19.99);
-        assertEquals(19.99, libro.getPrecio(), "El precio del libro debe ser 19.99 después de usar setPrecio");
-
-        // Prueba de getAutor
-        assertEquals("Gabriel Garcia Marquez", libro.getAutor(), "El autor del libro debe ser 'Gabriel Garcia Marquez'");
-
-        // Prueba de setAutor
-        libro.setAutor("Mario Vargas Llosa");
-        assertEquals("Mario Vargas Llosa", libro.getAutor(), "El autor del libro debe ser 'Mario Vargas Llosa' después de usar setAutor");
-
-        // Prueba de getNumPaginas
-        assertEquals(500, libro.getNumPaginas(), "El número de páginas del libro debe ser 500");
-
-        // Prueba de setNumPaginas
-        libro.setNumPaginas(600);
-        assertEquals(600, libro.getNumPaginas(), "El número de páginas del libro debe ser 600 después de usar setNumPaginas");
+        //se aplica un descuento del 80% al precio original
+        //19.99 - 80% = 3.2
+        producto.aplicarDescuento(80);
+        assertEquals(3.2, producto.getPrecio(), 0.01);
     }
 
     @Test
-    public void testHerenciaProductoLibro() {
-        // Verificar que Libro es una subclase de Producto
-        Libro libro = new Libro("Libro1", 29.99, "Cien Años de Soleda", "Gabriel Garcia Marquez", 500);
-        assertTrue(libro instanceof Producto, "Libro debe ser una subclase de Producto");
-
-    }
-
-    @Test
-    public void testAplicarDescuentoHerenciaLibro() {
-        // Crear una instancia de Libro
-        Libro libro = new Libro("Libro1", 100.0,"El Quijote", "Miguel de Cervantes", 500);
+    public void testAplicarDescuentoHerenciaProductoElectronico() {
+        // Crear una instancia de ProductoElectronico usando Televisor
+        ProductoElectronico productoElectronico = new Television("1", "Televisor 4K", 499.99, "Televisor de alta definición", "ProductoElectronico",
+                                                    "Samsung", "QLED", "Negro", 2, "220V", "65 pulg", "8K: 7680 x 4320", "LCD");
 
         // Aplicar un descuento válido
-        libro.aplicarDescuento(20);
-        assertEquals(80.0, libro.getPrecio(), 0.01);
+        productoElectronico.aplicarDescuento(20);
+        assertEquals(399.99, productoElectronico.getPrecio(), 0.01);
 
-        // Aplicar un descuento no válido
-        libro.aplicarDescuento(60);
-        assertEquals(80.0, libro.getPrecio(), 0.01); // El precio no debe cambiar
+        // Aplicar un descuento no válido, porque es mayor a 20%
+        // entonces el costo no debe cambiar
+        productoElectronico.aplicarDescuento(90);
+        assertEquals(399.99, productoElectronico.getPrecio(), 0.01); // El precio no debe cambiar
 
         // Aplicar otro descuento válido
-        libro.aplicarDescuento(10);
-        assertEquals(72.0, libro.getPrecio(), 0.01);
+        // se aplica un descuento del 10% al precio original
+        // 399.99 - 10% = 39.99
+        productoElectronico.aplicarDescuento(10);
+        assertEquals(360.0, productoElectronico.getPrecio(), 0.01);
     }
 
     @Test
-    public void testTelevision(){
-        // Prueba de getNombre
-        Television television = new Television("Samsung", 499.99, "55 pulg", "4K");
-        assertEquals("Samsung", television.getNombre(), "El nombre de la televisión debe ser 'Samsung'");
-
-        // Prueba de setNombre
-        television.setNombre("LG");
-        assertEquals("LG", television.getNombre(), "El nombre de la televisión debe ser 'LG' después de usar setNombre");
-
-        // Prueba de getPrecio
-        assertEquals(499.99, television.getPrecio(), "El precio de la televisión debe ser 499.99");
-
-        // Prueba de setPrecio
-        television.setPrecio(399.99);
-        assertEquals(399.99, television.getPrecio(), "El precio de la televisión debe ser 399.99 después de usar setPrecio");
-
-        // Prueba de getTamaño
-        assertEquals("55 pulg", television.getTamanio(), "El tamaño de la televisión debe ser 55");
-
-        // Prueba de setTamaño
-        television.setTamanio("65 pulg");
-        assertEquals("65 pulg", television.getTamanio(), "El tamaño de la televisión debe ser 65 después de usar setTamaño");
-
-        // Prueba de getResolucion
-        assertEquals("4K", television.getResolucion(), "La resolución de la televisión debe ser '4K'");
-
-        // Prueba de setResolucion
-        television.setResolucion("8K");
-        assertEquals("8K", television.getResolucion(), "La resolución de la televisión debe ser '8K' después de usar setResolucion");
-    }
-
-    @Test
-    public void testHerenciaProductoTelevision() {
-        // Verificar que Television es una subclase de Producto
-        Television television = new Television("Samsung", 499.99, "55 pulg", "4K");
-        assertTrue(television instanceof Producto, "Television debe ser una subclase de Producto");
-
-    }
-
-    @Test
-    public void testAplicarDescuentoHerenciaTelevision() {
-        // Crear una instancia de Television
-        Television tv = new Television("Samsung Smart TV", 500.0, "55 pulg", "4K");
+    public void testAplicarDescuentoHerenciaProductoElectroDomestico() {
+        // Crear una instancia de ProductoElectroDomestico usando Licuadora
+        ProductoElectroDomestico productoElectroDomestico = new Licuadora("7", "Licuadora Oster", 79.99, "Licuadora de alta velocidad con 10 velocidades","Electrodomesticos",
+                                                                     "Oster","BLSTMG-W00","Blanco",2,"110V", 600,1500);
 
         // Aplicar un descuento válido
-        tv.aplicarDescuento(20);
-        assertEquals(400.0, tv.getPrecio(), 0.01);
+        productoElectroDomestico.aplicarDescuento(20);
+        assertEquals(63.99, productoElectroDomestico.getPrecio(), 0.01);
 
-        // Aplicar un descuento no válido
-        tv.aplicarDescuento(50);
-        assertEquals(400.0, tv.getPrecio(), 0.01); // El precio no debe cambiar
+        // Aplicar un descuento no válido, porque es mayor a 50%
+        // entonces el costo no debe cambiar
+        productoElectroDomestico.aplicarDescuento(55);
+        assertEquals(63.99, productoElectroDomestico.getPrecio(), 0.01); // El precio no debe cambiar
 
         // Aplicar otro descuento válido
-        tv.aplicarDescuento(10);
-        assertEquals(360.0, tv.getPrecio(), 0.01);
+        // se aplica un descuento del 80% al precio original
+        // 63.99 - 20% = 51.1
+        productoElectroDomestico.aplicarDescuento(20);
+        assertEquals(51.19, productoElectroDomestico.getPrecio(), 0.01);
     }
 
     @Test
-    public void testCelular() {
-        // Prueba de getNombre
-        Celular celular = new Celular("iPhone", 999.99, "Apple", "iOS");
-        assertEquals("iPhone", celular.getNombre(), "El nombre del celular debe ser 'iPhone'");
-
-        // Prueba de setNombre
-        celular.setNombre("Samsung Galaxy");
-        assertEquals("Samsung Galaxy", celular.getNombre(), "El nombre del celular debe ser 'Samsung Galaxy' después de usar setNombre");
-
-        // Prueba de getPrecio
-        assertEquals(999.99, celular.getPrecio(), "El precio del celular debe ser 999.99");
-
-        // Prueba de setPrecio
-        celular.setPrecio(899.99);
-        assertEquals(899.99, celular.getPrecio(), "El precio del celular debe ser 899.99 después de usar setPrecio");
-
-        // Prueba de getMarca
-        celular.setMarca("Samsung");
-        assertEquals("Samsung", celular.getMarca(), "La marca del celular debe ser 'Samsung'");
-
-        // Prueba de setMarca
-        celular.setMarca("Apple");
-        assertEquals("Apple", celular.getMarca(), "La marca del celular debe ser 'Apple' después de usar setMarca");
-
-        // Prueba de getModelo
-        celular.setModelo("Android");
-        assertEquals("Android", celular.getModelo(), "El modelo del celular debe ser 'Android'");
-
-    }
-
-    @Test
-    public void testHerenciaProductoCelular() {
-        // Verificar que Celular es una subclase de Producto
-        Celular celular = new Celular("iPhone", 999.99, "Apple", "iOS");
-        assertTrue(celular instanceof Producto, "Celular debe ser una subclase de Producto");
-
-    }
-
-    @Test
-    public void testAplicarDescuentoHerenciaCelular() {
-        // Crear una instancia de Celular
-        Celular celular = new Celular("iPhone 12", 1000.0, "Apple", "iOS");
+    public void testAplicarDescuentoHerenciaProductoLiterario() {
+        // Crear una instancia de ProductoLiterario usando Libro
+        ProductoLiterario productoLiterario = new Libro("4", "Cien Años de Soledad", 19.99, "Descripción de prueba", "ProductoLiterario",
+                            "Gabriel Garcia Marquez", "Editorial", 1967, "Realismo mágico", 500, "978-84-376-0494-7");
 
         // Aplicar un descuento válido
-        celular.aplicarDescuento(20);
-        assertEquals(800.0, celular.getPrecio(), 0.01);
+        productoLiterario.aplicarDescuento(20);
+        assertEquals(15.99, productoLiterario.getPrecio(), 0.01);
 
-        // Aplicar un descuento no válido
-        celular.aplicarDescuento(50);
-        assertEquals(800.0, celular.getPrecio(), 0.01); // El precio no debe cambiar
-
-        // Aplicar otro descuento válido
-        celular.aplicarDescuento(10);
-        assertEquals(720.0, celular.getPrecio(), 0.01);
-    }
-
-
-    @Test
-    public void testLicuadora(){
-        // Prueba de getNombre
-        Licuadora licuadora = new Licuadora("Oster", 2000.00,600,1);
-        assertEquals("Oster", licuadora.getNombre(), "El nombre de la licuadora debe ser 'Oster'");
-
-        // Prueba de setNombre
-        licuadora.setNombre("Black & Decker");
-        assertEquals("Black & Decker", licuadora.getNombre(), "El nombre de la licuadora debe ser 'Black & Decker' después de usar setNombre");
-
-        // Prueba de getPrecio
-        assertEquals(2000.00, licuadora.getPrecio(), "El precio de la licuadora debe ser 39.99");
-
-        // Prueba de setPrecio
-        licuadora.setPrecio(29.99);
-        assertEquals(29.99, licuadora.getPrecio(), "El precio de la licuadora debe ser 29.99 después de usar setPrecio");
-
-        // Prueba de getPotencia
-        assertEquals(600, licuadora.getPotencia(), "La potencia de la licuadora debe ser 600");
-
-        // Prueba de setPotencia
-        licuadora.setPotencia(750);
-        assertEquals(750, licuadora.getPotencia(), "La potencia  de la licuadora debe ser 750 después de usar setPotencia");
-
-        // Prueba de getCapacidad
-        assertEquals(1, licuadora.getCapacidad(), "La capacidad de la licuadora debe ser 1");
-
-        // Prueba de setCapacidad
-        licuadora.setCapacidad(2);
-        assertEquals(2, licuadora.getCapacidad(), "La capacidad de la licuadora debe ser 2 después de usar setCapacidad");
-    }
-
-    @Test
-    public void testHerenciaProductoLicuadora() {
-        // Verificar que Licuadora es una subclase de Producto
-        Licuadora licuadora = new Licuadora("Oster", 2000.00,600,1);
-        assertTrue(licuadora instanceof Producto, "Licuadora debe ser una subclase de Producto");
-    }
-
-    @Test
-    public void testTostadora() {
-        // Prueba de getNombre
-        Tostadora tostadora = new Tostadora("Black & Decker", 29.99,2,"plata");
-        assertEquals("Black & Decker", tostadora.getNombre(), "El nombre de la tostadora debe ser 'Black & Decker'");
-
-        // Prueba de setNombre
-        tostadora.setNombre("Hamilton Beach");
-        assertEquals("Hamilton Beach", tostadora.getNombre(), "El nombre de la tostadora debe ser 'Hamilton Beach' después de usar setNombre");
-
-        // Prueba de getPrecio
-        assertEquals(29.99, tostadora.getPrecio(), "El precio de la tostadora debe ser 29.99");
-
-        // Prueba de setPrecio
-        tostadora.setPrecio(19.99);
-        assertEquals(19.99, tostadora.getPrecio(), "El precio de la tostadora debe ser 19.99 después de usar setPrecio");
-
-        // Prueba de getNumRanuras
-        assertEquals(2, tostadora.getNumRanuras(), "El número de ranuras de la tostadora debe ser 2");
-
-        // Prueba de setNumRanuras
-        tostadora.setNumRanuras(4);
-        assertEquals(4, tostadora.getNumRanuras(), "El número de ranuras de la tostadora debe ser 4 después de usar setNumRanuras");
-
-        // Prueba de getColor
-        assertEquals("plata", tostadora.getColor(), "El color de la tostadora debe ser 'plata'");
-
-        // Prueba de setColor
-        tostadora.setColor("metalizado");
-        assertEquals("metalizado", tostadora.getColor(), "El color de la tostadora debe ser 'metalizado' después de usar setColor");    
-        
-    }
-
-    @Test
-    public void testHerenciaProductoTostadora() {
-        // Verificar que Tostadora es una subclase de Producto
-        Tostadora tostadora = new Tostadora("Black & Decker", 29.99,2,"plata");
-        assertTrue(tostadora instanceof Producto, "Tostadora debe ser una subclase de Producto");
-
-    }
-
-    @Test
-    public void testAplicarDescuentoHerenciaTostadora() {
-         // Crear una instancia de Tostadora
-         Tostadora tostadora = new Tostadora("Black & Decker", 29.99, 2, "plata");
-
-         // Aplicar un descuento válido
-         tostadora.aplicarDescuento(20);
-         assertEquals(23.992, tostadora.getPrecio(), 0.01);
- 
-         // Aplicar un descuento no válido
-         tostadora.aplicarDescuento(95);
-         assertEquals(23.992, tostadora.getPrecio(), 0.01); // El precio no debe cambiar
- 
-         // Aplicar otro descuento válido
-         tostadora.aplicarDescuento(10);
-         assertEquals(21.5928, tostadora.getPrecio(), 0.01);
-    }
-
-
-
-    @Test
-    public void testCalculadora() {
-        // Prueba de getNombre
-        Calculadora calculadora = new Calculadora("Casio", 19.99, "científica");
-        assertEquals("Casio", calculadora.getNombre(), "El nombre de la calculadora debe ser 'Casio'");
-
-        // Prueba de setNombre
-        calculadora.setNombre("Texas Instruments");
-        assertEquals("Texas Instruments", calculadora.getNombre(), "El nombre de la calculadora debe ser 'Texas Instruments' después de usar setNombre");
-
-        // Prueba de getPrecio
-        assertEquals(19.99, calculadora.getPrecio(), "El precio de la calculadora debe ser 19.99");
-
-        // Prueba de setPrecio
-        calculadora.setPrecio(14.99);
-        assertEquals(14.99, calculadora.getPrecio(), "El precio de la calculadora debe ser 14.99 después de usar setPrecio");
-
-        // Prueba de getTipo
-        calculadora.setTipo("gráfica");
-        assertEquals("gráfica", calculadora.getTipo(), "El tipo de la calculadora debe ser 'gráfica'");
-
-        // Prueba de setTipo
-        calculadora.setTipo("científica");
-        assertEquals("científica", calculadora.getTipo(), "El tipo de la calculadora debe ser 'científica' después de usar setTipo");
-
-    }
-
-    @Test
-    public void testHerenciaProductoCalculadora() {
-        // Verificar que Tostadora es una subclase de Producto
-        Calculadora calculadora = new Calculadora("Casio", 19.99, "científica");
-        assertTrue(calculadora instanceof Producto, "Calculadora debe ser una subclase de Producto");
-
-
-    }
-
-    @Test
-    public void testAplicarDescuentoHerenciaCalculadora() {
-        // Crear una instancia de Calculadora
-        Calculadora calculadora = new Calculadora("Casio FX-991ES", 19.99, "Científica");
-
-        // Aplicar un descuento válido
-        calculadora.aplicarDescuento(20);
-        assertEquals(15.992, calculadora.getPrecio(), 0.01);
-
-        // Aplicar un descuento no válido
-        calculadora.aplicarDescuento(90);
-        assertEquals(15.992,calculadora.getPrecio(), 0.01); // El precio no debe cambiar
+        // Aplicar un descuento no válido, porque es mayor a 80%
+        // entonces el costo no debe cambiar
+        productoLiterario.aplicarDescuento(90);
+        assertEquals(15.99, productoLiterario.getPrecio(), 0.01); // El precio no debe cambiar
 
         // Aplicar otro descuento válido
-        calculadora.aplicarDescuento(10);
-        assertEquals(14.39, calculadora.getPrecio(), 0.01);
+        // se aplica un descuento del 80% al precio original
+        // 15.99 - 80% = 3.2
+        productoLiterario.aplicarDescuento(80);
+        assertEquals(3.2, productoLiterario.getPrecio(), 0.01);
     }
 
     @Test
-    public void testSobrescrituraMetodoToString() {
-        // Crear una instancia de Producto
-        Producto producto = new Producto("Producto Genérico", 50.00);
+    public void testPolimorfismoProducto() {
+        // Crear instancias de Televisor, Celular y Calculadora
+        ProductoElectronico television = new Television("1", "Televisor 4K", 499.99, "Televisor de alta definición", "ProductoElectronico",
+                                                        "Samsung", "QLED", "Negro", 2, "220V",
+                                                        "65 pulg","8K: 7680 x 4320","LCD");
+        ProductoElectronico celular = new Celular("2", "Celular Android", 299.99, "Celular de última generación", "ProductoElectronico",
+                                                 "Samsung", "Galaxy S21", "Azul", 1, "110V",
+                                                 3,"IOS",4,64,"tactil");
+        ProductoElectronico calculadora = new Calculadora("3", "Calculadora Científica", 19.99, "Calculadora con funciones avanzadas", "ProductoEletroico",
+                                                "Casio", "FX-991ES", "Gris", 1, "N/A","Científica");
 
-        // Crear una instancia de Tostadora
-        Tostadora tostadora = new Tostadora("Black & Decker", 50.00, 2, "plata");
+        ProductoElectroDomestico licuadora = new Licuadora("7", "Licuadora Oster", 79.99, "Licuadora de alta velocidad con 10 velocidades","Electrodomesticos",
+                                                "Oster","BLSTMG-W00","Blanco",2,"110V", 600,1500);
+        ProductoElectroDomestico tostadora = new Tostadora("8","Tostadora Philips",49.99, "Tostadora de 4 rebanadas con control de temperatura","Electrodomesticos",
+                                                 "Philips", "HD2581/00","Negro", 2,  "110V",4);
 
-        // Verificar el método toString en Producto
-        assertEquals("Producto: Producto Genérico, Precio: $50.0", producto.toString());
+        ProductoLiterario libro = new Libro("4","Cien Años de Soledad", 19.99, "Descripción de prueba", "Productoliterario", 
+                                                "Gabriel Garcia Marquez", "Editorial", 1967, "Realismo mágico", 500, "978-84-376-0494-7"); 
+       
+        ProductoPromocional camisetaPromocional = new CamisetaPromocional( "9","Camiseta Deportiva",19.99,"Camiseta de algodón para deportes","ProductoPromocional",
+                                                 "L","Rojo"); 
 
-        // Verificar el método toString en Tostadora
-        assertEquals("Producto: Black & Decker, Precio: $50.0, Ranuras: 2, Color: plata", tostadora.toString());
+        // Verificar que las instancias son también instancias de Producto
+        assertTrue(television instanceof Producto, "Televisor debe ser una instancia de Producto");
+        assertTrue(celular instanceof Producto, "Celular debe ser una instancia de Producto");
+        assertTrue(calculadora instanceof Producto, "Calculadora debe ser una instancia de Producto");
+        assertTrue(libro instanceof Producto, "Libro debe ser una instancia de Producto");
+        assertTrue(licuadora instanceof Producto,"Licuadora debe ser una instancia de Producto");
+        assertTrue(tostadora instanceof Producto,"Tostadora debe ser una instancia de Producto");
+        assertTrue(camisetaPromocional instanceof Producto,"Camiseta Promocional debe ser una instancia de Producto");
+
+        // Verificar que las instancias son también instancias de Familias
+        assertTrue(television instanceof ProductoElectronico, "Televisor debe ser una instancia de ProductoElectronico");
+        assertTrue(celular instanceof ProductoElectronico, "Celular debe ser una instancia de ProductoElectronico");
+        assertTrue(calculadora instanceof ProductoElectronico, "Calculadora debe ser una instancia de ProductoElectronico");
+        assertTrue(libro instanceof ProductoLiterario, "Libro debe ser una instancia de ProductoLiterario");
+        assertTrue(licuadora instanceof ProductoElectroDomestico, "Licuadora  debe ser una instancia de ProductoElectroDomestico");
+        assertTrue(tostadora instanceof ProductoElectroDomestico, "Tostadora debe ser una instancia de ProductoElectroDomestico");
+        assertTrue(camisetaPromocional instanceof ProductoPromocional, "Camiseta Promocional debe ser una instancia de ProductoPromocional");
     }
-        */
+
+    @Test
+    public void testAplicarDescuentoHerenciaProductoPromocional() {
+        // Crear una instancia de ProductoPromocional usando Camiseta
+        ProductoPromocional productoPromocional = new CamisetaPromocional("9","Camiseta Deportiva",19.99,"Camiseta de algodón para deportes","ProductoPromocional",
+                                                                    "L","Rojo");
+
+        // Aplicar un descuento no válido, porque es el 
+        //método aplicarDescuento no existe en la clase CamisetaPromocional
+        productoPromocional.aplicarDescuento(20);
+        assertEquals(19.99, productoPromocional.getPrecio(), 0.01);
+
+        // Aplicar un descuento no válido, porque es el 
+        //método aplicarDescuento no existe en la clase CamisetaPromocional
+        productoPromocional.aplicarDescuento(110);
+        assertEquals(19.99, productoPromocional.getPrecio(), 0.01); // El precio no debe cambiar
+
+        // Aplicar otro descuento válido
+        productoPromocional.aplicarDescuento(100);
+        assertEquals(19.99, productoPromocional.getPrecio(), 0.01);
+    }
+    
  
 }
