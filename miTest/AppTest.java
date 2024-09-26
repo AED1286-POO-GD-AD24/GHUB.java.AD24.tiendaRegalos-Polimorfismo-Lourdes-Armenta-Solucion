@@ -129,14 +129,27 @@ class AppTest {
     }
     @Test
     public void testVenderProductoExistente() {
-        System.out.println("pude?"+inventario.eliminarProducto("LibroABC"));
         tienda.venderProducto("LibroABC");
         assertNull(tienda.buscarProducto("LibroABC"));
         assertTrue(outContent.toString().contains("Producto vendido: LibroABC"));
     }
 
+    @Test
+    public void testNoVenderProductoPromocional() {
+        ProductoPromocional productoPromocional = new ProductoPromocional("9", "Camiseta Deportiva", 
+                19.99, "Camiseta de algodón para deportes","ProductoPromocional");
+        tienda.agregarProducto(productoPromocional);
+        
+        // Intentar vender el producto promocional
+        tienda.venderProducto("Promo123");
+        
+        // Verificar que el producto sigue existiendo en el inventario
+        assertNotNull(tienda.buscarProducto("Camiseta Deportiva"));
+        
+        // Verificar que no se imprimió el mensaje de producto vendido
+        assertFalse(outContent.toString().contains("Producto vendido: Camiseta Deportiva"));
+    }
 
-    
     @Test 
     public void testMenuInitialization() {
         Menu menu = new Menu();

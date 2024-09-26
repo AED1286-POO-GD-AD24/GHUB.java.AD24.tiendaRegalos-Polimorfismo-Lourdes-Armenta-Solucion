@@ -30,7 +30,6 @@ public class Inventario{
 
     public boolean eliminarProducto(String nombre) {
         
-        
         for (int i = 0; i < contador; i++) {
             
             if (productos[i].getNombre().equals(nombre)) {
@@ -49,10 +48,7 @@ public class Inventario{
             }
         }
         return false;
-        
-        
-
-        
+            
     }
 
     public boolean eliminarProducto(Producto producto) {
@@ -78,7 +74,6 @@ public class Inventario{
         }
         return null;
     }
-
 
     public double calcularValorTotalProductos() {
         double total = 0;

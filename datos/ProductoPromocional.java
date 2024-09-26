@@ -1,7 +1,6 @@
 package datos;
-import negocio.Vendible;
 
-public class ProductoPromocional extends Producto implements Vendible{
+public class ProductoPromocional extends Producto {
     final String familia = "ProductoPromocional";
     public ProductoPromocional(String idProducto, String nombre, double precio, String descripcion,
                                String familia) {
@@ -51,6 +50,8 @@ public class ProductoPromocional extends Producto implements Vendible{
     public String toString() {
         return "ProductoPromocional [idProducto=" + getIdProducto() + ", nombre=" + getNombre() + ", precio=" + getPrecio() + ", descripcion=" + getDescripcion() + "]";
     }
+
+    
 
     
 }

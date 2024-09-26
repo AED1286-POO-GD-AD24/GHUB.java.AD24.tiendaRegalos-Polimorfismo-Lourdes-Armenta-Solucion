@@ -1,7 +1,6 @@
 package datos;
-import negocio.Vendible;
 
-public abstract class ProductoElectronico  extends Producto implements Vendible{
+public abstract class ProductoElectronico  extends Producto {
     private String marca;
     private String modelo;
     private String color;

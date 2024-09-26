@@ -110,10 +110,10 @@ public class Menu {
         modelo = scanner.nextLine();
         System.out.print("Ingrese el color del producto: ");
         color = scanner.nextLine();
-        System.out.print("Ingrese la garantia del producto: ");
+        System.out.print("Ingrese la garantia del producto (en meses): ");
         garantia = scanner.nextInt();
         scanner.nextLine(); // Consumir la nueva línea
-        System.out.print("Ingrese el voltaje del producto: ");
+        System.out.print("Ingrese el voltaje del producto (voltios): ");
         voltaje = scanner.nextLine();
        
         
@@ -127,10 +127,10 @@ public class Menu {
         modelo = scanner.nextLine();
         System.out.print("Ingrese el color del producto: ");
         color = scanner.nextLine();
-        System.out.print("Ingrese la garantia del producto: ");
+        System.out.print("Ingrese la garantia del producto (en meses): ");
         garantia = scanner.nextInt();
         scanner.nextLine(); // Consumir la nueva línea
-        System.out.print("Ingrese el voltaje del producto: ");
+        System.out.print("Ingrese el voltaje del producto (en voltios): ");
         voltaje = scanner.nextLine();
        
        
@@ -191,11 +191,11 @@ public class Menu {
             case 2://Televisor
                 captura_Electronico(scanner);
                 //Datos específicos del televisor
-                System.out.print("Ingrese el tamaño: ");
+                System.out.print("Ingrese el tamaño (en pulgadas): ");
                 String tamanio = scanner.nextLine();
-                System.out.print("Ingrese la resolución: ");
+                System.out.print("Ingrese la resolución (en pixeles): ");
                 String resolucion = scanner.nextLine();
-                System.out.print("Ingrese el tipo de pantalla: ");
+                System.out.print("Ingrese el tipo de pantalla (LCD,LED,OLED,etc): ");
                 String tipoPantalla = scanner.nextLine();
                 familia = tiendaService.obtenerFamiliaProductoElectronico();
             
@@ -211,15 +211,15 @@ public class Menu {
                 System.out.print("Ingrese número de cámaras: ");
                 int numCamaras = scanner.nextInt();
                 scanner.nextLine(); // Consumir la nueva línea
-                System.out.print("Ingrese Sistema Opertativo: ");
+                System.out.print("Ingrese Sistema Opertativo (Android,iOS,Windows Phone, etc.): ");
                 String sistemaOperativo = scanner.nextLine();
-                System.out.print("Ingrese capacidad de almacenamiento: ");
+                System.out.print("Ingrese capacidad de almacenamiento (en GB): ");
                 int capacidadAlmacenamiento = scanner.nextInt();
                 scanner.nextLine(); // Consumir la nueva línea
-                System.out.print("Ingrese la RAM: ");
+                System.out.print("Ingrese la RAM (en GB): ");
                 int ram = scanner.nextInt();
                 scanner.nextLine(); // Consumir la nueva línea
-                System.out.print("Ingrese el tipo de pantalla: ");
+                System.out.print("Ingrese el tipo de pantalla (LCD,IPS,OLED y AMOLED): ");
                 String tipoPantallaCelular = scanner.nextLine();
 
                 familia= tiendaService.obtenerFamiliaProductoElectronico();
@@ -234,7 +234,7 @@ public class Menu {
             case 4://Calculadora
                 captura_Electronico(scanner);
                 //Datos específicos de la calculadora
-                System.out.print("Ingrese el tipo de calculadora: ");
+                System.out.print("Ingrese el tipo de calculadora (científicas estándar,programables, etc.): ");
                 String tipoCalculadora = scanner.nextLine();
 
                 familia = tiendaService.obtenerFamiliaProductoElectronico();
@@ -246,10 +246,10 @@ public class Menu {
             case 5://Licuadora
                 captura_electrodomestico(scanner); 
                 //Datos específicos de la licuadora
-                System.out.print("Ingrese la potencia: ");
+                System.out.print("Ingrese la potencia (vatios): ");
                 int potencia = scanner.nextInt();
                 scanner.nextLine(); // Consumir la nueva línea
-                System.out.print("Ingrese la capacidad: ");
+                System.out.print("Ingrese la capacidad (mililitros): ");
                 int capacidad = scanner.nextInt();
                 scanner.nextLine(); // Consumir la nueva línea
 

@@ -1,5 +1,6 @@
 package datos;
-public abstract class Producto {
+import negocio.Vendible;
+public abstract class Producto implements Vendible{
     private String idProducto;
     private String nombre;
     private double precio;
@@ -58,22 +59,17 @@ public abstract class Producto {
         this.familia = familia;
     }
 
-    
-
+   
     @Override
     public String toString() {
         return "Producto : "+ idProducto + ", " + nombre + ", $" + precio + ", " + descripcion;
     }
 
     
-
-    
-    
     public abstract String obtenerDetalles();
 
     public abstract boolean aplicarDescuento(double porcentaje);
 
-   
-
+    public abstract boolean esVendible();
 
 }

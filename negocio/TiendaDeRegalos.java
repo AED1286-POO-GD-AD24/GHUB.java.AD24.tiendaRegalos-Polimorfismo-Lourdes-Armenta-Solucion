@@ -50,9 +50,6 @@ public class TiendaDeRegalos{
         System.out.println(nombre + " está celebrando su aniversario!");
     }
 
-   
-
-
     public void agregarProducto(Producto producto) {
         inventario.agregarProducto(producto);
         System.out.println("Producto agregado: " + producto.getNombre());
@@ -94,9 +91,14 @@ public class TiendaDeRegalos{
     public void venderProducto(String nombreProducto) {
         Producto producto = buscarProducto(nombreProducto);
         
+        
         if (producto != null) {
+            if(!producto.esVendible()){
+                System.out.println("No se puede vender el producto: " + nombreProducto);
+                return;
+            }
             
-            if(inventario.eliminarProducto(nombreProducto))
+            if( inventario.eliminarProducto(nombreProducto))
                 System.out.println("Producto vendido: " + nombreProducto);
             else
                 System.out.println("Por algun extrano motivo no se puedo vender: " + nombreProducto);
@@ -104,6 +106,9 @@ public class TiendaDeRegalos{
         } else {
             System.out.println("Producto no encontrado: " + nombreProducto);
         }
+        
+
+        
     }
 
     public void actualizarPrecio(String nombreProducto, double nuevoPrecio) {

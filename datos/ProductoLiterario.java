@@ -1,8 +1,7 @@
 package datos;
 
-import negocio.Vendible;
 
-public class ProductoLiterario extends Producto implements Vendible{
+public class ProductoLiterario extends Producto {
     private String autor;
     private String editorial;
     private int anioPublicacion;
@@ -67,10 +66,6 @@ public class ProductoLiterario extends Producto implements Vendible{
     }
 
     
-
-    
-
-
     @Override
     public double calcularPrecio() {
         return 0;
